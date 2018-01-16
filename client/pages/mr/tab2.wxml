@@ -1,0 +1,151 @@
+<template name="tab2">
+	<scroll-view>
+		<view class="weui-cells__title">体格检查</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<textarea name="physical_examination" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<view class="weui-textarea-counter">0/200</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">实验室检查</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<textarea name="laboratory_and_supplementary_examinations" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<view class="weui-textarea-counter">0/200</view>
+				</view>
+			</view>
+		</view>
+
+		<!-- <view class="weui-cells__title">实验室检查图片</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<view class="weui-uploader">
+						<view class="weui-uploader__hd">
+							<view class="weui-uploader__title">图片上传</view>
+							<view class="weui-uploader__info">{{files.length}}/2</view>
+						</view>
+						<view class="weui-uploader__bd">
+							<view class="weui-uploader__files" id="uploaderFiles">
+								<block wx:for-items="{{files}}" wx:key="{{index}}">
+									<view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+										<image class="weui-uploader__img" src="{{item}}" mode="aspectFill"/>
+									</view>
+								</block>
+								<view class="weui-uploader__file">
+									<image class="weui-uploader__img" src="../images/pic_160.png" mode="aspectFill"/>
+								</view>
+							</view>
+							<view class="weui-uploader__input-box">
+								<view class="weui-uploader__input" bindtap="chooseImage"></view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view> -->
+
+		<view class="weui-cells__title">影像学意见</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<textarea name="imaging_examination" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<view class="weui-textarea-counter">0/200</view>
+				</view>
+			</view>
+		</view>
+
+		<!-- <view class="weui-cells__title">影像学意见图片</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<view class="weui-uploader">
+						<view class="weui-uploader__hd">
+							<view class="weui-uploader__title">图片上传</view>
+							<view class="weui-uploader__info">{{files.length}}/2</view>
+						</view>
+						<view class="weui-uploader__bd">
+							<view class="weui-uploader__files" id="uploaderFiles">
+								<block wx:for-items="{{files}}" wx:key="{{index}}">
+									<view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+										<image class="weui-uploader__img" src="{{item}}" mode="aspectFill"/>
+									</view>
+								</block>
+								<view class="weui-uploader__file">
+									<image class="weui-uploader__img" src="../images/pic_160.png" mode="aspectFill"/>
+								</view>
+							</view>
+							<view class="weui-uploader__input-box">
+								<view class="weui-uploader__input" bindtap="chooseImage"></view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view> -->
+
+		<view class="weui-flex">
+			<view class="label">BMI指数</view>
+			<view class="weui-flex__item">
+				<slider bindchange="bindSliderChangeBMI" show-value value="{{bmi}}"/>
+				<input name="bmi" value="{{bmi}}" style="display:none"/>
+			</view>
+		</view>
+		
+		<view class="weui-flex">
+			<view class="label">体温</view>
+			<view class="weui-flex__item">
+				<slider bindchange='bindSliderChangeTemperature' show-value value="{{temperature}}"/>
+				<input name="temperature" value="{{temperature}}" style="display:none"/>
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">脉搏(次／分钟)</view>
+			<view class="weui-flex__item">
+				<slider bindchange='bindSliderChangePulse' show-value value="{{pulse}}"/>
+				<input name="pulse" value="{{pulse}}" style="display:none"/>
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">呼吸(次／分钟)</view>
+			<view class="weui-flex__item">
+				<slider bindchange='bindSliderChangeRespiratoryRate' show-value value="{{respiratory_rate}}"/>
+				<input name="respiratory_rate" value="{{respiratory_rate}}" style="display:none"/>
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">血压(mmHg)</view>
+			<view class="weui-flex__item">
+				<slider bindchange='bindSliderChangeBloodPressure' show-value value="{{blood_pressure}}"/>
+				<input name="blood_pressure" value="{{blood_pressure}}" style="display:none"/>
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">氧饱和度(%)</view>
+			<view class="weui-flex__item">
+				<slider bindchange='bindSliderChangeOxygenSaturation' show-value value="{{oxygen_saturation}}"/>
+				<input name="oxygen_saturation" value="{{oxygen_saturation}}" style="display:none"/>
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">疼痛指数</view>
+			<view class="weui-flex__item">
+				<slider bindchange='bindSliderChangePainScore' show-value value="{{pain_score}}"/>
+				<input name="pain_score" value="{{pain_score}}" style="display:none"/>
+			</view>
+		</view>
+
+		<view class="weui-btn-area">
+			<button formType="submit" class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
+		</view>
+	</scroll-view>
+</template>

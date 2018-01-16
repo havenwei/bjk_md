@@ -1,0 +1,125 @@
+<template name="tab1">
+
+	<scroll-view>
+		<view class="weui-flex">
+			<view class="label">姓名</view>
+			<view class="weui-flex__item">
+				<input class="weui-input" name="name" placeholder="请输入姓名"/>
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">身份证</view>
+			<view class="weui-flex__item">
+				<input class="weui-input" name="identity_card" placeholder="请输入身份证"/>
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">性别</view>
+			<view class="weui-flex__item">
+				<radio-group name="gender">
+					<label><radio value="男"/>男</label>
+					<label><radio value="女"/>女</label>
+				</radio-group>
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">身高(cm)</view>
+			<view class="weui-flex__item">
+				<picker mode="selector" bindchange="bindPickerHChange" value="{{hSelectedIndex}}" range="{{heights}}">
+					<input type='number' style="display:none" name="height" value="{{heights[hSelectedIndex]}}"/>
+					<view>{{heights[hSelectedIndex]}}</view>
+				</picker>
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">体重(kg)</view>
+			<view class="weui-flex__item">
+				<picker mode="selector" bindchange="bindPickerWChange" value="{{wSelectedIndex}}" range="{{weights}}">
+					<view class="picker">
+						<input type='number' style="display:none" name="weight" value="{{weights[wSelectedIndex]}}"/>
+						{{weights[wSelectedIndex]}}
+					</view>
+				</picker>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">主诉</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<textarea name="chief_complaint" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<view class="weui-textarea-counter">0/200</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">现病史</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<textarea name="history_of_present_illness" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<view class="weui-textarea-counter">0/200</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">既往史</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<textarea name="past_medical_history" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<view class="weui-textarea-counter">0/200</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">过敏史</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<textarea name="allergic_history" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<view class="weui-textarea-counter">0/200</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">个人史</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<textarea name="personal_history" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<view class="weui-textarea-counter">0/200</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">家族史</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<textarea name="family_history" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<view class="weui-textarea-counter">0/200</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">疫苗史</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<textarea name="vaccination_history" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<view class="weui-textarea-counter">0/200</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-btn-area">
+			<button formType="submit" class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
+		</view>
+
+	</scroll-view>
+</template>
