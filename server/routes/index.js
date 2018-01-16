@@ -2,7 +2,7 @@
  * ajax 服务路由集合
  */
 const router = require('koa-router')({
-    prefix: '/weapp'
+  prefix: '/weapp'
 })
 const controllers = require('../controllers')
 
@@ -21,7 +21,7 @@ router.get('/user', validationMiddleware, controllers.user)
 router.post('/upload', controllers.upload)
 
 router.post('/medical_records', controllers.mr.post)
-router.delete('/medical_records/:id', controllers.mr.delete)
+router.delete('/medical_records/:id', controllers.mr.destroy)
 router.put('/medical_records/:id', controllers.mr.update)
 router.get('/medical_records', controllers.mr.getAll)
 router.get('/medical_records/:id', controllers.mr.getOne)

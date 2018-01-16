@@ -1,9 +1,9 @@
 var PostgREST = require("postgrest-client")
 var Api = new PostgREST("http://192.168.31.196:3000");
 
-// async function getOne(ctx, next) {
-//   next
-// }
+async function getOne(ctx, next) {
+
+}
 
 
 async function getAll(ctx, next) {
@@ -15,22 +15,22 @@ async function getAll(ctx, next) {
 // getAll()
 // Api.get("/fa_medical_record").then(data => console.log(data))
 
-// async function post(ctx, next) {
-//   next
-// }
+async function post(ctx, next) {
 
-// async function update(ctx, next) {
-//   next
-// }
+}
 
-// async function destroy(ctx, next) {
-//   next
-// }
+async function update(ctx, next) {
 
-// module.exports = {
-//   post,
-//   getOne,
-//   getAll,
-//   update,
-//   destroy
-// }
+}
+
+async function destroy(ctx, next) {
+
+}
+
+module.exports = {
+  post,
+  getOne,
+  getAll,
+  update,
+  destroy
+}

@@ -6,7 +6,6 @@
     "scripts": {
         "start": "pm2 start process.prod.json --no-daemon",
         "dev": "nodemon --config nodemon.json app.js",
-        "api": "node controllers/mr.js",
         "initdb": "npm install && node tools/initdb.js"
     },
     "author": "Jason",
@@ -22,7 +21,6 @@
         "mkdir-p": "0.0.7",
         "mysql": "^2.14.1",
         "pify": "^2.3.0",
-        "postgrest-client": "^1.1.2",
         "wafer-node-sdk": "^1.1.1"
     },
     "devDependencies": {
