@@ -1,0 +1,309 @@
+<!--pages/mr/show.wxml-->
+
+	<view class="page">
+		<view class="page__bd">
+			<view class="weui-tab">
+				<view class="weui-navbar">
+					<block wx:for-items="{{tabs}}" wx:key="{{index}}">
+						<view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+							<view class="weui-navbar__title">{{item}}</view>
+						</view>
+					</block>
+					<view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+				</view>
+				<view class="weui-tab__panel">
+					<view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+						<template is="tab1" data="{{info}}"/>
+					</view>
+					<view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+						<template is="tab2" data="{{info}}"/>
+					</view>
+					<view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+						<template is="tab3" data="{{info}}"/>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+<!-- tab1模板 -->
+<template name="tab1">
+
+	<scroll-view>
+
+		<view class="weui-flex">
+			<view class="label">姓名</view>
+			<view class="weui-flex__item">
+				{{info.name}}
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">身份证</view>
+			<view class="weui-flex__item">
+				{{info.identity_card}}
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">性别</view>
+			<view class="weui-flex__item">
+				{{info.gender}}
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">身高(cm)</view>
+			<view class="weui-flex__item">
+        {{info.height}}
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">体重(kg)</view>
+			<view class="weui-flex__item">
+        {{info.weight}}
+			</view>
+		</view>
+
+		<view class="weui-cells__title">主诉</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+          {{info.chief_complaint}}
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">现病史</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+          {{info.history_of_present_illness}}
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">既往史</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+          {{info.past_medical_history}}
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">过敏史</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					{{info.allergic_history}}
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">个人史</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					{{info.personal_history}}
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">家族史</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					{{info.family_history}}
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">疫苗史</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					{{info.family_history}}
+				</view>
+			</view>
+		</view>
+
+	</scroll-view>
+</template>
+<!-- tab1模板 end-->
+
+<!-- tab2模板  -->
+<template name="tab2">
+	<scroll-view>
+		<view class="weui-cells__title">体格检查</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					{{info.physical_examination}}
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-cells__title">实验室检查</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					{{info.laboratory_and_supplementary_examinations}}
+				</view>
+			</view>
+		</view>
+
+		<!-- <view class="weui-cells__title">实验室检查图片</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<view class="weui-uploader">
+						<view class="weui-uploader__hd">
+							<view class="weui-uploader__title">图片上传</view>
+							<view class="weui-uploader__info">{{files.length}}/2</view>
+						</view>
+						<view class="weui-uploader__bd">
+							<view class="weui-uploader__files" id="uploaderFiles">
+								<block wx:for-items="{{files}}" wx:key="{{index}}">
+									<view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+										<image class="weui-uploader__img" src="{{item}}" mode="aspectFill"/>
+									</view>
+								</block>
+								<view class="weui-uploader__file">
+									<image class="weui-uploader__img" src="../images/pic_160.png" mode="aspectFill"/>
+								</view>
+							</view>
+							<view class="weui-uploader__input-box">
+								<view class="weui-uploader__input" bindtap="chooseImage"></view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view> -->
+
+		<view class="weui-cells__title">影像学意见</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					{{info.imaging_examination}}
+				</view>
+			</view>
+		</view>
+
+		<!-- <view class="weui-cells__title">影像学意见图片</view>
+		<view class="weui-cells weui-cells_after-title">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<view class="weui-uploader">
+						<view class="weui-uploader__hd">
+							<view class="weui-uploader__title">图片上传</view>
+							<view class="weui-uploader__info">{{files.length}}/2</view>
+						</view>
+						<view class="weui-uploader__bd">
+							<view class="weui-uploader__files" id="uploaderFiles">
+								<block wx:for-items="{{files}}" wx:key="{{index}}">
+									<view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+										<image class="weui-uploader__img" src="{{item}}" mode="aspectFill"/>
+									</view>
+								</block>
+								<view class="weui-uploader__file">
+									<image class="weui-uploader__img" src="../images/pic_160.png" mode="aspectFill"/>
+								</view>
+							</view>
+							<view class="weui-uploader__input-box">
+								<view class="weui-uploader__input" bindtap="chooseImage"></view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view> -->
+
+		<view class="weui-flex">
+			<view class="label">BMI指数</view>
+			<view class="weui-flex__item">
+				{{info.bmi}}
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">体温</view>
+			<view class="weui-flex__item">
+				{{info.temperature}}
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">脉搏(次／分钟)</view>
+			<view class="weui-flex__item">
+				{{info.pulse}}
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">呼吸(次／分钟)</view>
+			<view class="weui-flex__item">
+				{{info.respiratory_rate}}
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">血压(mmHg)</view>
+			<view class="weui-flex__item">
+				{{info.blood_pressure}}
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">氧饱和度(%)</view>
+			<view class="weui-flex__item">
+    		{{info.oxygen_saturation}}
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">疼痛指数</view>
+			<view class="weui-flex__item">
+				{{info.pain_score}}
+			</view>
+		</view>
+
+	</scroll-view>
+</template>
+
+<!-- tab2模板 end-->
+
+<!-- tab3模板 -->
+<template name="tab3">
+	<view class="weui-cells__title">初步咨询意见</view>
+	<view class="weui-cells weui-cells_after-title">
+		<view class="weui-cell">
+			<view class="weui-cell__bd">
+    		{{info.preliminary_diagnosis}}
+			</view>
+		</view>
+	</view>
+
+	<view class="weui-cells__title">治疗意见</view>
+	<view class="weui-cells weui-cells_after-title">
+		<view class="weui-cell">
+			<view class="weui-cell__bd">
+				{{info.treatment_recommendation}}
+			</view>
+		</view>
+	</view>
+
+	<view class="weui-cells__title">备注</view>
+	<view class="weui-cells weui-cells_after-title">
+		<view class="weui-cell">
+			<view class="weui-cell__bd">
+				{{info.remarks}}
+			</view>
+		</view>
+	</view>
+
+</template>
+
+<!-- tab3模板 end-->

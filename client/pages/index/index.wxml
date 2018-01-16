@@ -63,4 +63,12 @@
             <text>新增病历</text>
         </navigator>
     </view>
+
+    <!-- 病历列表 -->
+    <view class="uploader">
+        <navigator url="../mr/index" open-type="navigate" class="uploader-text">
+            <text>病历列表</text>
+        </navigator>
+    </view>
+    
 </view>

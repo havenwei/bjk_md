@@ -1,15 +1,17 @@
 var PostgREST = require("postgrest-client")
-var Api = new PostgREST("http://192.168.31.196:3000");
+var Api = new PostgREST("http://babycare.natapp1.cc");
 
 async function getOne(ctx, next) {
-
 }
-
 
 async function getAll(ctx, next) {
   var data = await Api.get('/fa_medical_record')
-  ctx.body = data
+  // ctx.state.data = { "helll": "world"}
+  // console.log('sdfasdfasdfasdfasd')
   // console.log(data)
+  ctx.state.data = {
+    medical_records: data
+  }
 }
 
 // getAll()

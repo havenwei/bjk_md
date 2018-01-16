@@ -74,12 +74,10 @@ Page({
       console.log(web_token);
 
       wx.request({
-          url: config.host + "/patients/medical_records.json",
+          // url: config.host + "/patients/medical_records.json",
+          url: config.service.dbHost + "/fa_medical_record",
           data: formData,
-          method: 'POST',
-                  header: {
-                      'Authorization': web_token
-                  },
+          method: 'POST',                  
           success: function(res) {
 
             console.log(res.statusCode)

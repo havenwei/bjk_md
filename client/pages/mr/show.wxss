@@ -1,0 +1,42 @@
+/* pages/mr/show.wxss */
+.page,
+.page__bd{
+    height: 100%;
+    padding-bottom: 0;
+}
+
+.weui-navbar__item {
+    background-color: #FFFFFF;
+}
+
+.weui-tab__content{
+    padding-top: 10px;
+    text-align: left;
+}
+
+.weui-flex{
+  height: 60px;
+  line-height: 60px;
+}
+
+.weui-uploader__file{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.weui-flex__item{
+  padding-left: 34px;
+  height: 2.58823529em;
+  min-height: 2.58823529em;
+  line-height: 2.58823529em;
+}
+
+
+.label {
+  padding: 0px 10px;
+  text-align: left;
+  height: 2.58823529em;
+  min-height: 2.58823529em;
+  line-height: 2.58823529em;
+  width: 25%;
+  font-size: 15px;
+}
