@@ -3,7 +3,7 @@ var app = getApp()
 
 Page({
   data:{
-    tabs: ["病例内容", "体格检查信息", "诊断意见"],
+    tabs: ["病历内容", "检查结果", "用药治疗"],
     activeIndex: "0",
     info:{
       id: null,

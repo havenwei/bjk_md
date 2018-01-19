@@ -8,7 +8,7 @@ var util = require('../../utils/util.js')
 Page({
   data: {
         files: [],
-        tabs: ["基本信息", "体格检查", "诊断意见"],
+        tabs: ["病历内容", "检查结果", "用药治疗"],
         activeIndex: "0",
         sliderOffset: 0,
         sliderLeft: 0,
@@ -69,15 +69,11 @@ Page({
     formSubmit: function(e) {
       var that = this;
       var formData = e.detail.value;
-      var web_token = wx.getStorageSync('web_token')
-      console.log(formData);
-      console.log(web_token);
 
       wx.request({
-          // url: config.host + "/patients/medical_records.json",
-          url: config.service.dbHost + "/fa_medical_record",
+          url: config.service.host + "/weapp/medical_records",
           data: formData,
-          method: 'POST',                  
+          method: 'POST',
           success: function(res) {
 
             console.log(res.statusCode)
