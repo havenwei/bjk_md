@@ -1,7 +1,7 @@
 <!--pages/mr/index.wxml-->
 <scroll-view>
 	<view wx:for="{{medical_records}}" wx:key="unique" class="list">
-		<navigator url="./show?id={{index}}" hover-class="navigator-hover">
+		<navigator url="./show?id={{item.id}}" hover-class="navigator-hover">
 			<view class="infos">
 	      <view class="title">病历{{index+1}}</view>
 	      <view class="date">{{item.created_at}}</view>

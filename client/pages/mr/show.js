@@ -47,13 +47,18 @@ Page({
   },
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
-    // this.setData({
-    //   id: options.id
-    // })
-    // var that = this
     console.log(options)
-    var medical_record = app.globalData.medical_records[options.id]
-    console.log(medical_record)
+    var that = this;
+    wx.request({
+      url: config.service.host + "/weapp/medical_records/",
+      method: "GET",
+      success: function(res) {
+        console.log(res.statusCode);
+        console.log(res.data);
+        var medical_record = res.data.data.medical_record;
+        console.log(medical_record);
+      }
+    });
     this.setData({
       info: medical_record
     })
