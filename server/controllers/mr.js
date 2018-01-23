@@ -1,11 +1,11 @@
-import { log } from "util";
+// import { log } from "util";
 
 var PostgREST = require("postgrest-client")
-var Api = new PostgREST("http://babycare.natapp1.cc")
+var Api = new PostgREST("http://babycare.yhuan.cc")
 
 async function getOne(ctx, next) {
-  const id = ctx.querystring.id
-  const data = await Api.get(`/fa_medical_record?id=eq.$id`)
+  const id = ctx.params.id
+  const data = await Api.get(`/fa_medical_record?id=eq.${id}`)
   ctx.state.data = {
     medical_record: data
   }
@@ -30,8 +30,10 @@ async function post(ctx, next) {
   }
 }
 
+// curl -X PATCH -d name=val2 http://babycare.yhuan.cc/fa_medical_record?id=eq.1
+
 async function update(ctx, next) {
-  const data = await Api.patch('/fa_medical_record')
+  const data = await Api.patch(`/fa_medical_record?id=eq.${id}`)
   console.log(data);
   ctx.state.data = {
     status: "OK"
