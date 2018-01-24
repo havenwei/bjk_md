@@ -1,5 +1,0 @@
-{
-  "dependencies": {
-    "postgrest-client": "^1.1.2"
-  }
-}

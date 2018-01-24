@@ -1,4 +1,6 @@
 // pages/mr/show.js
+var qcloud = require('../../vendor/wafer2-client-sdk/index')
+var config = require('../../config')
 var app = getApp()
 
 Page({
@@ -50,18 +52,16 @@ Page({
     console.log(options)
     var that = this;
     wx.request({
-      url: config.service.host + "/weapp/medical_records/",
+      url: `${config.service.host}/weapp/medical_records/${options.id}`,
       method: "GET",
       success: function(res) {
         console.log(res.statusCode);
         console.log(res.data);
-        var medical_record = res.data.data.medical_record;
+        var medical_record = res.data.data.medical_record[0];
         console.log(medical_record);
+        that.setData({ info: medical_record });
       }
     });
-    this.setData({
-      info: medical_record
-    })
   },
 
   tabClick: function (e) {

@@ -5,7 +5,6 @@ const formatTime = date => {
   const hour = date.getHours()
   const minute = date.getMinutes()
   const second = date.getSeconds()
-
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
@@ -29,7 +28,7 @@ var showSuccess = text => wx.showToast({
 })
 
 // 显示失败提示
-var showModel = (title, content) => {
+const showModel = (title, content) => {
     wx.hideToast();
 
     wx.showModal({
@@ -39,4 +38,15 @@ var showModel = (title, content) => {
     })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel }
+const params = (obj) => {
+  var str = "";
+  for (var key in obj) {
+    if (str != "") {
+      str += "&";
+    }
+    str += key + "=" + encodeURIComponent(obj[key]);
+  }
+  return str;
+}
+
+module.exports = { formatTime, showBusy, showSuccess, showModel, params }

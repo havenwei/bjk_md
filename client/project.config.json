@@ -1,18 +1,17 @@
 {
-	"client": "./client",
-	"svr": "./server",
-	"miniprogramRoot": "./client",
-	"qcloudRoot": "./server",
+	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
-	"appid": "wx3d77b65e4978ca04",
-	"projectname": "bjk_md",
+	"compileType": "miniprogram",
 	"libVersion": "1.9.1",
+	"appid": "wx3d77b65e4978ca04",
+	"projectname": "bjkmd",
+	"isGameTourist": false,
 	"condition": {
 		"search": {
 			"current": -1,
@@ -23,7 +22,7 @@
 			"list": []
 		},
 		"game": {
-			"current": -1,
+			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {

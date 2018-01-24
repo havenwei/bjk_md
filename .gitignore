@@ -43,3 +43,6 @@ typings/
 sh/
 # ignore test sdk.config.json
 sdk.config.json
+
+client/node_modules/
+server/node_modules/

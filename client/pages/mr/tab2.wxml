@@ -121,10 +121,18 @@
 		</view>
 
 		<view class="weui-flex">
-			<view class="label">血压(mmHg)</view>
+			<view class="label">收缩压(mmHg)</view>
 			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeBloodPressure' show-value value="{{blood_pressure}}"/>
-				<input name="blood_pressure" value="{{blood_pressure}}" style="display:none"/>
+				<slider bindchange='bindSliderChangeSystolicPressure' show-value value="{{systolic_pressure}}"/>
+				<input name="systolic_pressure" value="{{systolic_pressure}}" style="display:none"/>
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">舒张压(mmHg)</view>
+			<view class="weui-flex__item">
+				<slider bindchange='bindSliderChangeDiastolicPressure' show-value value="{{diastolic_pressure}}"/>
+				<input name="diastolic_pressure" value="{{systolic_pressure}}" style="display:none"/>
 			</view>
 		</view>
 
