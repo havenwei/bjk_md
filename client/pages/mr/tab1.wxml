@@ -3,21 +3,21 @@
 	<scroll-view>
 		<view class="weui-flex">
 			<view class="label">姓名</view>
-			<view class="weui-flex__item">
+			<view class="weui-flex__item__show">
 				<input class="weui-input" name="name" placeholder="请输入姓名"/>
 			</view>
 		</view>
 
 		<view class="weui-flex">
 			<view class="label">身份证</view>
-			<view class="weui-flex__item">
+			<view class="weui-flex__item__show">
 				<input class="weui-input" name="identity_card" placeholder="请输入身份证"/>
 			</view>
 		</view>
 
 		<view class="weui-flex">
 			<view class="label">性别</view>
-			<view class="weui-flex__item">
+			<view class="weui-flex__item__show">
 				<radio-group name="gender">
 					<label><radio value="男"/>男</label>
 					<label><radio value="女"/>女</label>
@@ -27,7 +27,7 @@
 
 		<view class="weui-flex">
 			<view class="label">身高(cm)</view>
-			<view class="weui-flex__item">
+			<view class="weui-flex__item__show">
 				<picker mode="selector" bindchange="bindPickerHChange" value="{{hSelectedIndex}}" range="{{heights}}">
 					<input type='number' style="display:none" name="height" value="{{heights[hSelectedIndex]}}"/>
 					<view>{{heights[hSelectedIndex]}}</view>
@@ -37,7 +37,7 @@
 
 		<view class="weui-flex">
 			<view class="label">体重(kg)</view>
-			<view class="weui-flex__item">
+			<view class="weui-flex__item__show">
 				<picker mode="selector" bindchange="bindPickerWChange" value="{{wSelectedIndex}}" range="{{weights}}">
 					<view class="picker">
 						<input type='number' style="display:none" name="weight" value="{{weights[wSelectedIndex]}}"/>
