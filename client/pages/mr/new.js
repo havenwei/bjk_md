@@ -33,7 +33,8 @@ Page({
     oxygen_saturation: 0,
     pain_score: 0,
     date: "2016-09-01",
-    time: "12:01"
+    time: "12:01",
+    imgArr: []
   },
   onLoad: function() {
     var that = this;
@@ -46,6 +47,55 @@ Page({
       }
     });
   },
+  // 上传图片接口
+  doUpload: function() {
+    var that = this;
+    console.log(that.data);
+
+    // 选择图片
+    wx.chooseImage({
+      count: 1,
+      sizeType: ["compressed"],
+      sourceType: ["album", "camera"],
+      success: function(res) {
+        util.showBusy("正在上传");
+        var filePath = res.tempFilePaths[0];
+
+        // 上传图片
+        wx.uploadFile({
+          url: config.service.uploadUrl,
+          filePath: filePath,
+          name: "file",
+
+          success: function(res) {
+            util.showSuccess("上传图片成功");
+            console.log(res);
+            res = JSON.parse(res.data);
+            console.log(res);
+
+            var newImgArr = that.data.imgArr.push(res.data.imgUrl);
+            console.log(newImgArr);
+            console.log(that.data);
+            console.log(that.data.imgArr);
+
+            that.setData({
+              imgArr: that.data.imgArr
+            });
+
+            console.log(that.data);
+          },
+
+          fail: function(e) {
+            util.showModel("上传图片失败");
+          }
+        });
+      },
+      fail: function(e) {
+        console.error(e);
+      }
+    });
+  },
+
   tabClick: function(e) {
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
