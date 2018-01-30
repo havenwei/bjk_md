@@ -115,6 +115,8 @@ Page({
                         that.setData({
                             imgUrl: res.data.imgUrl
                         })
+
+                        console.log(that.data)
                     },
 
                     fail: function(e) {

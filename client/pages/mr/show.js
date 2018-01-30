@@ -59,7 +59,9 @@ Page({
         console.log(res.data);
         var medical_record = res.data.data.medical_record[0];
         console.log(medical_record);
-        that.setData({ info: medical_record });
+        that.setData({
+          info: medical_record
+        })
       }
     });
   },

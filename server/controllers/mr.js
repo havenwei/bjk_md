@@ -1,6 +1,6 @@
 // import { log } from "util";
 const PostgREST = require("postgrest-client")
-const Api = new PostgREST("http://babycare.yhuan.cc")
+const Api = new PostgREST("http://haven.natapp1.cc")
 const queryString = require("query-string");
 
 async function getOne(ctx, next) {
