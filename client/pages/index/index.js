@@ -2,13 +2,15 @@
 var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var config = require('../../config')
 var util = require('../../utils/util.js')
+// var lodash = require('../../vendor/lodash/index')
 
 Page({
     data: {
         userInfo: {},
         logged: false,
         takeSession: false,
-        requestResult: ''
+        requestResult: '',
+        imgArr: []
     },
 
     // 用户登录示例
@@ -39,7 +41,6 @@ Page({
                                 logged: true
                             })
                         },
-
                         fail(error) {
                             util.showModel('请求失败', error)
                             console.log('request fail', error)
@@ -91,6 +92,7 @@ Page({
     // 上传图片接口
     doUpload: function () {
         var that = this
+        console.log(that.data);
 
         // 选择图片
         wx.chooseImage({
@@ -112,9 +114,15 @@ Page({
                         console.log(res)
                         res = JSON.parse(res.data)
                         console.log(res)
+
+                        var newImgArr = that.data.imgArr.push(res.data.imgUrl)
+                        console.log(newImgArr);
+                        console.log(that.data)
+                        console.log(that.data.imgArr)
+
                         that.setData({
-                            imgUrl: res.data.imgUrl
-                        })
+                          imgArr: that.data.imgArr
+                        });
 
                         console.log(that.data)
                     },
@@ -132,10 +140,13 @@ Page({
     },
 
     // 预览图片
-    previewImg: function () {
+    previewImg: function (e) {
+        console.log(e.target.dataset)
+        console.log(e.target.dataset.imgUrl)
+        console.log(this.data.imgArr);
         wx.previewImage({
-            current: this.data.imgUrl,
-            urls: [this.data.imgUrl]
+            current: e.target.dataset.imgUrl,
+            urls: this.data.imgArr
         })
     },
 

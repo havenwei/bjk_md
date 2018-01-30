@@ -29,12 +29,13 @@
         <view class="uploader-text" bindtap="doUpload">
             <text>上传图片</text>
         </view>
-        <view class="uploader-container" wx:if="{{imgUrl}}">
+        <view class="uploader-container" wx:for="{{imgArr}}" wx:key="*this">
             <image
                 class="uploader-image"
-                src="{{imgUrl}}"
+                src="{{item}}"
                 mode="aspectFit"
                 bindtap="previewImg"
+                data-imgUrl="{{item}}"
             ></image>
         </view>
     </view>
