@@ -34,7 +34,9 @@ Page({
     pain_score: 0,
     date: "2016-09-01",
     time: "12:01",
-    imgArr: []
+    imgArr1: [],
+    imgArr2: [],
+    imgArr3: []
   },
   onLoad: function() {
     var that = this;
@@ -48,7 +50,37 @@ Page({
     });
   },
   // 上传图片接口
-  doUpload: function() {
+  doUpload1: function() {
+    var that = this;
+    // this.uploadAndAppend(that.data.imgArr1);
+    this.uploadAndAppend(function(res) {
+      that.data.imgArr1.push(res.data.imgUrl);
+      that.setData({
+        imgArr1: that.data.imgArr1
+      });
+    });
+  },
+
+  doUpload2: function() {
+    var that = this;
+    this.uploadAndAppend(function(res) {
+      that.data.imgArr2.push(res.data.imgUrl);
+      that.setData({
+        imgArr2: that.data.imgArr2
+      });
+    });
+  },
+
+  doUpload3: function() {
+    var that = this;
+    this.uploadAndAppend(function(res) {
+      that.data.imgArr3.push(res.data.imgUrl);
+      that.setData({ imgArr3: that.data.imgArr3 });
+    });
+  },
+
+  //上传图片
+  uploadAndAppend: function(callback) {
     var that = this;
     console.log(that.data);
 
@@ -69,20 +101,14 @@ Page({
 
           success: function(res) {
             util.showSuccess("上传图片成功");
-            console.log(res);
+            // console.log(res);
             res = JSON.parse(res.data);
-            console.log(res);
-
-            var newImgArr = that.data.imgArr.push(res.data.imgUrl);
-            console.log(newImgArr);
-            console.log(that.data);
-            console.log(that.data.imgArr);
-
-            that.setData({
-              imgArr: that.data.imgArr
-            });
-
-            console.log(that.data);
+            // console.log(res);
+            // e.push(res.data.imgUrl);
+            // that.setData({
+            //   imgArr: e
+            // });
+            callback(res);
           },
 
           fail: function(e) {
@@ -93,6 +119,35 @@ Page({
       fail: function(e) {
         console.error(e);
       }
+    });
+  },
+
+  // 预览图片
+  previewImg1: function(e) {
+    console.log(e.target.dataset);
+    console.log(e.target.dataset.imgUrl);
+    console.log(this.data.imgArr);
+    wx.previewImage({
+      current: e.target.dataset.imgUrl,
+      urls: this.data.imgArr1
+    });
+  },
+
+  previewImg2: function(e) {
+    console.log(e.target.dataset);
+    console.log(e.target.dataset.imgUrl);
+    console.log(this.data.imgArr);
+    wx.previewImage({
+      current: e.target.dataset.imgUrl,
+      urls: this.data.imgArr1
+    });
+  },
+
+  previewImg3: function(e) {
+    console.log(e.target.dataset);
+    wx.previewImage({
+      current: e.target.dataset.imgUrl,
+      urls: this.data.imgArr1
     });
   },
 

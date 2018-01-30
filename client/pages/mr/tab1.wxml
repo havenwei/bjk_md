@@ -118,15 +118,15 @@
 		</view>
 
 		<view class="weui-cells weui-cells_after-title uploader">
-			<view class="uploader-text" bindtap="doUpload">
+			<view class="uploader-text" bindtap="doUpload1">
 				<text>上传图片</text>
 			</view>
-			<view class="uploader-container" wx:for="{{imgArr}}" wx:key="*this">
+			<view class="uploader-container" wx:for="{{imgArr1}}" wx:key="*this">
 				<image
 					class="uploader-image"
 					src="{{item}}"
 					mode="aspectFit"
-					bindtap="previewImg"
+					bindtap="previewImg1"
 					data-imgUrl="{{item}}"
 				></image>
 			</view>

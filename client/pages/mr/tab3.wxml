@@ -29,6 +29,22 @@
 		</view>
 	</view>
 
+	<view class="weui-cells weui-cells_after-title uploader">
+			<view class="uploader-text" bindtap="doUpload3">
+				<text>上传图片</text>
+			</view>
+			<view class="uploader-container" wx:for="{{imgArr3}}" wx:key="*this">
+				<image
+					class="uploader-image"
+					src="{{item}}"
+					mode="aspectFit"
+					bindtap="previewImg3"
+					data-imgUrl="{{item}}"
+				></image>
+			</view>
+		</view>
+
+
 	<view class="weui-btn-area">
 		<button formType="submit" class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
 	</view>
