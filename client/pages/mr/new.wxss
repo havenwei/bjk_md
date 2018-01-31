@@ -65,3 +65,34 @@
 radio {
   padding: 0 10px;
 }
+
+.weui-uploader__input-box {
+    float: left;
+    position: relative;
+    width: 77px;
+    height: 77px;
+    border: 1px solid #D9D9D9;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+wx-view.weui-cells{
+    margin-top: 0;
+}
+
+wx-li.weui-uploader__file {    
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 0;
+    width: 77px;
+    height: 77px;
+    background: no-repeat center center;
+    background-size: cover;
+    border: 1px solid #D9D9D9;
+}
+
+wx-image.uploader-image {
+  width: 77px;
+  height: 77px;
+}

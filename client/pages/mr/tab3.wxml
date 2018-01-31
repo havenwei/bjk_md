@@ -29,20 +29,23 @@
 		</view>
 	</view>
 
-	<view class="weui-cells weui-cells_after-title uploader">
-			<view class="uploader-text" bindtap="doUpload3">
-				<text>上传图片</text>
-			</view>
-			<view class="uploader-container" wx:for="{{imgArr3}}" wx:key="*this">
-				<image
-					class="uploader-image"
-					src="{{item}}"
-					mode="aspectFit"
-					bindtap="previewImg3"
-					data-imgUrl="{{item}}"
-				></image>
-			</view>
+	<view class="weui-cells__title">上传图片</view>
+	<view class="weui-cells">
+		<view class="weui-cell">
+			<ul class="weui-uploader__files">
+				<li class="weui-uploader__file" wx:for="{{imgArr3}}" wx:key="*this">
+					<image
+						class="uploader-image"
+						src="{{item}}"
+						mode="aspectFit"
+						bindtap="previewImg3"
+						data-imgUrl="{{item}}"
+					></image>
+				</li>
+				<li class="weui-uploader__input-box" bindtap="doUpload3"></li>
+			</ul>
 		</view>
+	</view>
 
 
 	<view class="weui-btn-area">
