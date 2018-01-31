@@ -1,19 +1,27 @@
-const Koa = require('koa')
-const app = new Koa()
-const debug = require('debug')('koa-weapp-demo')
-const response = require('./middlewares/response')
-const bodyParser = require('koa-bodyparser')
-const config = require('./config')
+  const Koa = require('koa')
+  const app = new Koa()
+  const debug = require('debug')('koa-weapp-demo')
+  const response = require('./middlewares/response')
+  const bodyParser = require('koa-bodyparser')
+  const config = require('./config')
+  const { postgraphile } = require("postgraphile");
+  const { buildSchema, defaultPlugins } = require("graphile-build");
+  const { printSchema } = require("graphql/utilities");
 
-// 使用响应处理中间件
-app.use(response)
+  app.use(postgraphile(process.env.DATABASE_URL || "postgres://localhost:5432/"));
 
-// 解析请求体
-app.use(bodyParser())
+  const schema = await buildSchema(defaultPlugins);
+  console.log(printSchema(schema));
 
-// 引入路由分发
-const router = require('./routes')
-app.use(router.routes())
+  // 使用响应处理中间件
+  app.use(response)
 
-// 启动程序，监听端口
-app.listen(config.port, () => debug(`listening on port ${config.port}`))
+  // 解析请求体
+  app.use(bodyParser())
+
+  // 引入路由分发
+  const router = require('./routes')
+  app.use(router.routes())
+
+  // 启动程序，监听端口
+  app.listen(config.port, () => debug(`listening on port ${config.port}`))

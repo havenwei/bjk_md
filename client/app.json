@@ -1,7 +1,6 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/addCgi/addCgi",
     "pages/mr/new",
     "pages/mr/index",
     "pages/mr/show"
