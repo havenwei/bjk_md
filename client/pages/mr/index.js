@@ -16,13 +16,11 @@ Page({
         success: function(res) {
           console.log(res.statusCode)
           console.log(res.data)
-
           var medical_records = res.data.data.medical_records;
           console.log(medical_records)
           medical_records.map( (element, index) => {
             element.created_at = util.formatTime(new Date(element.created_at))
           })
-
           that.setData({
             medical_records: medical_records
           })
@@ -30,19 +28,15 @@ Page({
           console.log(app.globalData)
         }
     })
-
   },
 
   onReady:function(){
-
+    console.log(app.globalData);
   },
   onShow:function(){
-
   },
   onHide:function(){
-
   },
   onUnload:function(){
-
   }
 })
