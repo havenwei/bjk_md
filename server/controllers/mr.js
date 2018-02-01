@@ -18,8 +18,7 @@ var allMedicalRecordsByUserId = graph(`query allMedicalRecordsByUserId{
             }
           }`);
 
-var medicalRecordsById = graph(
-  `query medicalRecordsById($id: Int!) {
+var medicalRecordsById = graph(`query medicalRecordsById($id: Int!) {
           medicalRecordsById(id: $id) {
             id
             name
