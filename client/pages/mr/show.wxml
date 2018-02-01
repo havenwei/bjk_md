@@ -41,7 +41,7 @@
 		<view class="weui-flex">
 			<view class="label">身份证</view>
 			<view class="weui-flex__item">
-				{{info.identity_card}}
+				{{info.identityCard}}
 			</view>
 		</view>
 

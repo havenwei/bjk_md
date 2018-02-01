@@ -18,8 +18,17 @@ var allMedicalRecordsByUserId = graph(`query allMedicalRecordsByUserId{
             }
           }`);
 
-var oneMedicalRecordsByUserId = graph(
-        `query oneMR {allFaMedicalRecords {edges {node {id onsetDate bmi } } } }`
+var medicalRecordsById = graph(
+      `query medicalRecordsById {
+        medicalRecordsById(id:1) {
+          id
+          name
+          gender
+          chiefComplaint
+          updatedAt
+          identityCard
+        }
+      }`
 );
 
 
@@ -42,9 +51,8 @@ var createMR = graph(`
 
 async function getOne(ctx, next) {
   const id = ctx.params.id;
-  ctx.state.data = {
-    medical_record: data
-  };
+  const data = await medicalRecordsById(id)
+  ctx.state.data = { medical_record: data.medicalRecordsById };
 }
 
 async function getAll(ctx, next) {

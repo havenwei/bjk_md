@@ -57,7 +57,7 @@ Page({
       success: function(res) {
         console.log(res.statusCode);
         console.log(res.data);
-        var medical_record = res.data.data.medical_record[0];
+        var medical_record = res.data.data.medical_record;
         console.log(medical_record);
         that.setData({
           info: medical_record
