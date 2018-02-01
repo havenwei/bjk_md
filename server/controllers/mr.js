@@ -19,15 +19,15 @@ var allMedicalRecordsByUserId = graph(`query allMedicalRecordsByUserId{
           }`);
 
 var medicalRecordsById = graph(
-      `query medicalRecordsById {
-        medicalRecordsById(id:1) {
-          id
-          name
-          gender
-          chiefComplaint
-          updatedAt
-          identityCard
-        }
+  `query medicalRecordsById($id: Int!) {
+          medicalRecordsById(id: $id) {
+            id
+            name
+            gender
+            chiefComplaint
+            updatedAt
+            identityCard
+          }
       }`
 );
 
@@ -50,8 +50,8 @@ var createMR = graph(`
 
 
 async function getOne(ctx, next) {
-  const id = ctx.params.id;
-  const data = await medicalRecordsById(id)
+  const id = parseInt(ctx.params.id);
+  const data = await medicalRecordsById({id: id})
   ctx.state.data = { medical_record: data.medicalRecordsById };
 }
 
