@@ -2,7 +2,7 @@ const queryString = require("query-string");
 // const graphql = require("graphql")
 // const postgraphql = require('postgraphql').postgraphql
 var graphql = require('graphql.js')
-var graph = graphql("http://babycare.yhuan.cc/graphql")
+var graph = graphql("http://haven.natapp1.cc/graphql")
 
 var allMedicalRecordsByUserId = graph(`query allMedicalRecordsByUserId{
           allMedicalRecordsByUserId(user_id: 1){

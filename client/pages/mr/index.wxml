@@ -1,27 +1,13 @@
 <!--pages/mr/index.wxml-->
-<scroll-view>
-	<view wx:for="{{medical_records}}" wx:key="unique" class="list">
-		<navigator url="./show?id={{item.id}}" hover-class="navigator-hover">
-			<view class="infos">
-	      <view class="title">{{item.name}}</view>
-	      <view class="date">{{item.chief_complaint}}</view>
-	    </view>
-		</navigator>
-	</view>
-</scroll-view>
 
 <scroll-view class="weui-panel weui-panel_access">
 	<view class="weui-panel__hd">病历列表</view>
-	<view class="weui-panel__bd" wx:for="{{medical_records}}" wx:key="unique">
-		<view class="weui-media-box weui-media-box_text">
-			<view class="weui-media-box__title weui-media-box__title_in-text">{{item.name}}</view>
-			<view class="weui-media-box__desc">{{item.chief_complaint}}</view>
-		</view>
-	</view>
-	<view class="weui-panel__ft">
-		<view class="weui-cell weui-cell_access weui-cell_link">
-			<view class="weui-cell__bd">查看更多</view>
-			<view class="weui-cell__ft weui-cell__ft_in-access"></view>
+	<view class="weui-panel__bd">
+		<view class="weui-media-box weui-media-box_text" wx:for="{{medical_records}}" wx:key="unique">
+			<navigator url="./show?id={{item.id}}" hover-class="navigator-hover">
+				<view class="weui-media-box__title weui-media-box__title_in-text">{{item.name}}</view>
+				<view class="weui-media-box__desc">{{item.preliminaryDiagnosis}}</view>
+			</navigator>
 		</view>
 	</view>
 </scroll-view>
