@@ -2,18 +2,19 @@
   const app = new Koa()
   const debug = require('debug')('koa-weapp-demo')
   const response = require('./middlewares/response')
-  const bodyParser = require('koa-bodyparser')
+  const bodyParser = require  ('koa-bodyparser')
   const config = require('./config')
-  const { postgraphile } = require("postgraphile");
-  const { buildSchema, defaultPlugins } = require("graphile-build");
-  const { printSchema } = require("graphql/utilities");
 
-  app.use(postgraphile(process.env.DATABASE_URL || "postgres://localhost:5432/"));
+  // const { postgraphile } = require("postgraphile");
+  // const { buildSchema, defaultPlugins } = require("graphile-build");
+  // const { printSchema } = require("graphql/utilities");
 
-  const schema = await buildSchema(defaultPlugins);
-  console.log(printSchema(schema));
+  // app.use(postgraphile(process.env.DATABASE_URL || "postgres://localhost:5432/"));
 
-  // 使用响应处理中间件
+  // const schema = await buildSchema(defaultPlugins);
+  // console.log(printSchema(schema));
+
+  //  使用响应处理中间件
   app.use(response)
 
   // 解析请求体

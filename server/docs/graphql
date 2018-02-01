@@ -1,0 +1,21 @@
+mutation createMR {
+  createFaMedicalRecord(input: {faMedicalRecord: {bmi: 12, painScore: 34}}) {
+    faMedicalRecord {
+      personalHistory
+      temperature
+      oxygenSaturation
+    }
+  }
+}
+
+query allMR {
+  allFaMedicalRecords {
+    edges {
+      node {
+        id
+        onsetDate
+        bmi
+      }
+    }
+  }
+}

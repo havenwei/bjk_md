@@ -1,6 +1,14 @@
+// rootPathname, useQcloudLogin, cos, serverHost, tunnelServerUrl, tunnelSignatureKey, qcloudAppId, qcloudSecretId, qcloudSecretKey, wxMessageToken
 const CONF = {
     port: '5757',
     rootPathname: '',
+
+    serverHost: '',
+    tunnelServerUrl: '',
+    tunnelSignatureKey: '',
+    qcloudAppId: '',
+    qcloudSecretId: '',
+    qcloudSecretKey: '',
 
     // 微信小程序 App ID
     appId: '',

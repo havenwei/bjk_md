@@ -1,29 +1,67 @@
-// import { log } from "util";
-const PostgREST = require("postgrest-client");
-const Api = new PostgREST("http://babycare.yhuan.cc");
 const queryString = require("query-string");
-const graphql = require("graphql")
+// const graphql = require("graphql")
+// const postgraphql = require('postgraphql').postgraphql
+var graphql = require('graphql.js')
+var graph = graphql("http://babycare.yhuan.cc/graphql")
+
+var allMedicalRecordsByUserId = graph(`query allMedicalRecordsByUserId{
+          allMedicalRecordsByUserId(user_id: 1){
+              id
+              name
+              gender
+              chiefComplaint
+              identityCard
+              preliminaryDiagnosis
+              onsetDate
+              updatedAt
+              createdAt
+            }
+          }`);
+
+var oneMedicalRecordsByUserId = graph(
+        `query oneMR {allFaMedicalRecords {edges {node {id onsetDate bmi } } } }`
+);
+
+
+var createMR = graph(`
+        mutation createMR {
+        createFaMedicalRecord(input: {
+          faMedicalRecord: {
+            bmi: $bmi,
+            painScore: $painScore}
+          }){
+          faMedicalRecord {
+            bmi
+            personalHistory
+            temperature
+            oxygenSaturation
+          }
+        }
+}`)
 
 
 async function getOne(ctx, next) {
   const id = ctx.params.id;
-  // const data = await Api.get(`/fa_medical_record?id=eq.${id}`)
-  const data = await Api.get("/fa_medical_record").match({ id });
   ctx.state.data = {
     medical_record: data
   };
 }
 
 async function getAll(ctx, next) {
-  const data = await Api.get("/fa_medical_record");
-  // ctx.state.data = { "helll": "world"}
+  // allMedicalRecordsByUserId().then(function(data) {
+  //   console.log(data);
+  // //   mrs = data.allMedicalRecordsByUserId;
+  // //   console.log(mrs);
+  //   console.log({ medical_records: data.allMedicalRecordsByUserId });
+  //   ctx.state.data = { medical_records: data.allMedicalRecordsByUserId };
+  // });
+
+  const data = await allMedicalRecordsByUserId()
   console.log(data);
-  ctx.state.data = {
-    medical_records: data
-  };
+  ctx.state.data = { medical_records: data.allMedicalRecordsByUserId };
+
 }
 
-// curl -X POST -d name=val2 http://babycare.yhuan.cc/fa_medical_record
 async function post(ctx, next) {
   const params = queryString.stringify(ctx.request.body);
   const data = await Api.post("/fa_medical_record").send(params);
@@ -37,7 +75,7 @@ async function post(ctx, next) {
 
 // curl -X PATCH -d name=val2 http://babycare.yhuan.cc/fa_medical_record?id=eq.1
 async function update(ctx, next) {
-  const data = await Api.patch(`/fa_medical_record?id=eq.${id}`);
+  // const data = await Api.patch(`/fa_medical_record?id=eq.${id}`);
   console.log(data);
   ctx.state.data = {
     status: "OK"

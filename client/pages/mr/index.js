@@ -14,8 +14,10 @@ Page({
         url: config.service.host + "/weapp/medical_records",
         method: 'GET',
         success: function(res) {
+          console.log(res);
           console.log(res.statusCode)
           console.log(res.data)
+
           var medical_records = res.data.data.medical_records;
           console.log(medical_records)
           medical_records.map( (element, index) => {
