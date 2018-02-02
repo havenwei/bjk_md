@@ -4,7 +4,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					<textarea name="physical_examination" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<textarea name="physical_examination" value="{{info.physicalExamination}}" class="weui-textarea" placeholder="" style="height: 3.3em"/>
 				</view>
 			</view>
 		</view>
@@ -13,77 +13,19 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					<textarea name="laboratory_and_supplementary_examinations" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<textarea name="laboratory_and_supplementary_examinations" value="{{info.laboratoryAndSupplementaryExaminations}}" class="weui-textarea" placeholder="" style="height: 3.3em"/>
 				</view>
 			</view>
 		</view>
-
-		<!-- <view class="weui-cells__title">实验室检查图片</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell">
-				<view class="weui-cell__bd">
-					<view class="weui-uploader">
-						<view class="weui-uploader__hd">
-							<view class="weui-uploader__title">图片上传</view>
-							<view class="weui-uploader__info">{{files.length}}/2</view>
-						</view>
-						<view class="weui-uploader__bd">
-							<view class="weui-uploader__files" id="uploaderFiles">
-								<block wx:for-items="{{files}}" wx:key="{{index}}">
-									<view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
-										<image class="weui-uploader__img" src="{{item}}" mode="aspectFill"/>
-									</view>
-								</block>
-								<view class="weui-uploader__file">
-									<image class="weui-uploader__img" src="../images/pic_160.png" mode="aspectFill"/>
-								</view>
-							</view>
-							<view class="weui-uploader__input-box">
-								<view class="weui-uploader__input" bindtap="chooseImage"></view>
-							</view>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view> -->
 
 		<view class="weui-cells__title">影像学意见</view>
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					<textarea name="imaging_examination" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<textarea name="imaging_examination" value="{{info.imagingExamination}}" class="weui-textarea" placeholder="" style="height: 3.3em"/>
 				</view>
 			</view>
 		</view>
-
-		<!-- <view class="weui-cells__title">影像学意见图片</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell">
-				<view class="weui-cell__bd">
-					<view class="weui-uploader">
-						<view class="weui-uploader__hd">
-							<view class="weui-uploader__title">图片上传</view>
-							<view class="weui-uploader__info">{{files.length}}/2</view>
-						</view>
-						<view class="weui-uploader__bd">
-							<view class="weui-uploader__files" id="uploaderFiles">
-								<block wx:for-items="{{files}}" wx:key="{{index}}">
-									<view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
-										<image class="weui-uploader__img" src="{{item}}" mode="aspectFill"/>
-									</view>
-								</block>
-								<view class="weui-uploader__file">
-									<image class="weui-uploader__img" src="../images/pic_160.png" mode="aspectFill"/>
-								</view>
-							</view>
-							<view class="weui-uploader__input-box">
-								<view class="weui-uploader__input" bindtap="chooseImage"></view>
-							</view>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view> -->
 
 		<view class="weui-flex">
 			<view class="label">BMI指数</view>
@@ -112,40 +54,40 @@
 		<view class="weui-flex">
 			<view class="label">呼吸(次／分钟)</view>
 			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeRespiratoryRate' show-value value="{{info.respiratory_rate}}"/>
-				<input name="respiratory_rate" value="{{info.respiratory_rate}}" style="display:none"/>
+				<slider bindchange='bindSliderChangeRespiratoryRate' show-value value="{{info.respiratoryRate}}"/>
+				<input name="respiratory_rate" value="{{info.respiratoryRate}}" style="display:none"/>
 			</view>
 		</view>
 
 		<view class="weui-flex">
 			<view class="label">收缩压(mmHg)</view>
 			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeSystolicPressure' show-value value="{{info.systolic_pressure}}"/>
-				<input name="systolic_pressure" value="{{info.systolic_pressure}}" style="display:none"/>
+				<slider bindchange='bindSliderChangeSystolicPressure' show-value value="{{info.systolicPressure}}"/>
+				<input name="systolic_pressure" value="{{info.systolicPressure}}" style="display:none"/>
 			</view>
 		</view>
 
 		<view class="weui-flex">
 			<view class="label">舒张压(mmHg)</view>
 			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeDiastolicPressure' show-value value="{{info.diastolic_pressure}}"/>
-				<input name="diastolic_pressure" value="{{info.diastolic_pressure}}" style="display:none"/>
+				<slider bindchange='bindSliderChangeDiastolicPressure' show-value value="{{info.diastolicPressure}}"/>
+				<input name="diastolic_pressure" value="{{info.diastolicPressure}}" style="display:none"/>
 			</view>
 		</view>
 
 		<view class="weui-flex">
 			<view class="label">氧饱和度(%)</view>
 			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeOxygenSaturation' show-value value="{{info.oxygen_saturation}}"/>
-				<input name="oxygen_saturation" value="{{info.oxygen_saturation}}" style="display:none"/>
+				<slider bindchange='bindSliderChangeOxygenSaturation' show-value value="{{info.oxygenSaturation}}"/>
+				<input name="oxygen_saturation" value="{{info.oxygenSaturation}}" style="display:none"/>
 			</view>
 		</view>
 
 		<view class="weui-flex">
 			<view class="label">疼痛指数</view>
 			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangePainScore' show-value value="{{info.pain_score}}"/>
-				<input name="pain_score" value="{{info.pain_score}}" style="display:none"/>
+				<slider bindchange='bindSliderChangePainScore' show-value value="{{info.painScore}}"/>
+				<input name="pain_score" value="{{info.painScore}}" style="display:none"/>
 			</view>
 		</view>
 

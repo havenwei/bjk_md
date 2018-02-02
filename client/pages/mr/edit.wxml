@@ -23,7 +23,7 @@
 						<template is="tab2" data="{{info}}"/>
 					</view>
 					<view class="weui-tab__content" hidden="{{activeIndex != 2}}">
-						<template is="tab3" data="{{imgArr3}}"/>
+						<template is="tab3" data="{{info}}"/>
 					</view>
 				</view>
 			</view>

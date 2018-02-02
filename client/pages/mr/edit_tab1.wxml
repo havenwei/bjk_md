@@ -11,14 +11,14 @@
 		<view class="weui-flex">
 			<view class="label">身份证</view>
 			<view class="weui-flex__item__show">
-				<input class="weui-input" name="identity_card" placeholder="请输入身份证"/>
+				<input class="weui-input" name="identity_card" value="{{info.identityCard}}" placeholder="请输入身份证"/>
 			</view>
 		</view>
 
 		<view class="weui-flex">
 			<view class="label">性别</view>
 			<view class="weui-flex__item__show">
-				<radio-group name="gender">
+				<radio-group name="gender" value="{{info.gender}}">
 					<label><radio value="男"/>男</label>
 					<label><radio value="女"/>女</label>
 				</radio-group>
@@ -51,8 +51,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					<textarea name="chief_complaint" class="weui-textarea" placeholder="" style="height: 3.3em"/>
-					<view class="weui-textarea-counter">0/200</view>
+					<textarea name="chief_complaint" value="{{info.chiefComplaint}}" class="weui-textarea" placeholder="" style="height: 3.3em"/>
 				</view>
 			</view>
 		</view>
@@ -61,7 +60,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					<textarea name="history_of_present_illness" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<textarea name="history_of_present_illness" value="{{info.historyOfPresentIllness}}" class="weui-textarea" placeholder="" style="height: 3.3em"/>
 				</view>
 			</view>
 		</view>
@@ -70,7 +69,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					<textarea name="past_medical_history" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<textarea name="past_medical_history" value="{{info.pastMedicalHistory}}" class="weui-textarea" placeholder="" style="height: 3.3em"/>
 				</view>
 			</view>
 		</view>
@@ -79,7 +78,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					<textarea name="allergic_history" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<textarea name="allergic_history" value="{{info.allergicHistory}}" class="weui-textarea" placeholder="" style="height: 3.3em"/>
 				</view>
 			</view>
 		</view>
@@ -88,7 +87,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					<textarea name="personal_history" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<textarea name="personal_history" value="{{info.personalHistory}}" class="weui-textarea" placeholder="" style="height: 3.3em"/>
 				</view>
 			</view>
 		</view>
@@ -97,7 +96,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					<textarea name="family_history" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<textarea name="family_history" value="{{info.familyHistory}}" class="weui-textarea" placeholder="" style="height: 3.3em"/>
 				</view>
 			</view>
 		</view>
@@ -106,7 +105,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					<textarea name="vaccination_history" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<textarea name="vaccination_history" value="{{info.vaccinationHistory}}" class="weui-textarea" placeholder="" style="height: 3.3em"/>
 				</view>
 			</view>
 		</view>
