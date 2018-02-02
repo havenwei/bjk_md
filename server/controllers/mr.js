@@ -18,8 +18,8 @@ var allMedicalRecordsByUserId = `query allMedicalRecordsByUserId {
                                     }
                                   }`;
 
-var medicalRecordsById = `query medicalRecordsById($id: Int!) {
-                              medicalRecordsById(id: $id) {
+var medicalRecordById = `query medicalRecordById($id: Int!) {
+                              medicalRecordById(id: $id) {
                                 id
                                 name
                                 gender
@@ -61,10 +61,17 @@ var createMR = `mutation createMR($medical_record: MedicalRecordInputType!){
                 }`;
 
 
+var updateMR = `mutation createMR($medical_record: MedicalRecordInputType!){
+                  createMedicalRecord(medical_record: $medical_record) {
+                    id
+                  }
+               `;
+
+
 async function getOne(ctx, next) {
   const id = parseInt(ctx.params.id);
-  const data = await graph(medicalRecordsById, { id: id });
-  ctx.state.data = { medical_record: data.medicalRecordsById };
+  const data = await graph(medicalRecordById, { id: id });
+  ctx.state.data = { medical_record: data.medicalRecordById };
 }
 
 async function getAll(ctx, next) {
@@ -87,6 +94,9 @@ async function post(ctx, next) {
 async function update(ctx, next) {
   // const data = await Api.patch(`/fa_medical_record?id=eq.${id}`);
   console.log(data);
+  const data = await graph(updateMR, {
+      medical_record: ctx.request.body
+  });
   ctx.state.data = { status: "OK" };
 }
 
