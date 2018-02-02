@@ -11,7 +11,7 @@ Page({
   onLoad: function(options){
     var that = this;
     wx.request({
-        url: config.service.host + "/weapp/medical_records",
+        url: config.service.host + "/weapp/medical_records?user_id=" + app.globalData.userId,
         method: 'GET',
         success: function(res) {
           console.log(res);

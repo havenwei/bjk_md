@@ -4,7 +4,10 @@
 var graphql = require('graphql.js')
 var graph = graphql("http://wx.baojiankang.cc/graphql")
 
-var allMedicalRecordsByUserId = `query allMedicalRecordsByUserId {
+// var graphql = require("graphql.js");
+// var graph = graphql("http://babycare.yhuan.cc/graphql");
+
+var allMedicalRecordsByUserId = `query allMedicalRecordsByUserId($id: Int!) {
                                     allMedicalRecordsByUserId(user_id: $id){
                                             id
                                             name
@@ -52,7 +55,6 @@ var medicalRecordById = `query medicalRecordById($id: Int!) {
                               }
                           }`;
 
-
 var createMR = `mutation createMedicalRecord($medical_record: MedicalRecordInputType!){
                   createMedicalRecord(medical_record: $medical_record) {
                     id
@@ -60,16 +62,15 @@ var createMR = `mutation createMedicalRecord($medical_record: MedicalRecordInput
                   }
                 }`;
 
-
 var updateMR = `mutation updateMedicalRecord($medical_record: MedicalRecordInputType!){
                   updateMedicalRecord(medical_record: $medical_record) {
                     id
                   }
-               `;
+                }`;
 
-var unionIdForUserId = `query unionIdForUserId(id: $id){
-  unionIdForUserId(id: $id)
-}`;
+var unionIdForUserId = `query unionIdForUserId($id: String!){
+                            unionIdForUserId(id: $id)
+                        }`;
 
 async function getOne(ctx, next) {
   const id = parseInt(ctx.params.id);
@@ -78,11 +79,14 @@ async function getOne(ctx, next) {
 }
 
 async function getAll(ctx, next) {
-  const id = parseInt(ctx.params.id);
-  const data = await graph(allMedicalRecordsByUserId, { id: id})();
+  console.log("this is server .....");
+  // console.log(ctx.params)
+  // console.log(ctx.query)
+  const user_id = parseInt(ctx.query.user_id);
+  console.log(user_id);
+  const data = await graph(allMedicalRecordsByUserId, { id: user_id });
   console.log(data);
   ctx.state.data = { medical_records: data.allMedicalRecordsByUserId };
-
 }
 
 async function post(ctx, next) {
@@ -110,19 +114,27 @@ async function destroy(ctx, next) {
   // ctx.state.data = { medical_records: data };
 }
 
+async function exchangeUnionIdForUserId(ctx, next) {
+  console.log('server ......')
+  // console.log(ctx)
+  console.log(ctx.params.unionId)
+  // console.log(ctx.query)
+  var unionId = ctx.params.unionId;
+  const data = await graph(unionIdForUserId, { id: unionId });
+  console.log(data);
+  ctx.state.data = { unionId: data.unionIdForUserId };
+}
+
 async function unionIdForUserId(ctx, next) {
-  const id = parseInt(ctx.params.id);
-  const data = await graph(unionIdForUserId, { id: id })
-  ctx.state.data = {
-    data: data
-  }
+  console.log(ctx.params);
 }
 
 module.exports = {
+  unionIdForUserId,
+  exchangeUnionIdForUserId,
   post,
   getOne,
   getAll,
   update,
-  destroy,
-  unionIdForUserId
+  destroy
 };

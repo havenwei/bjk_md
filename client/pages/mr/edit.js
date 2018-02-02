@@ -9,42 +9,41 @@ Page({
     activeIndex: "0",
     info: {
       id: null,
-      create_date: null,
-      write_date: null,
+      createDate: null,
+      writeDate: null,
       weight: null,
-      laboratory_and_supplementary_examinations: null,
-      updated_at: null,
+      laboratoryAndSupplementaryExaminations: null,
+      updatedAt: null,
       pulse: null,
       height: null,
-      blood_pressure: null,
-      chief_complaint: null,
-      vaccination_history: null,
-      reservation_id: null,
-      personal_history: null,
-      create_uid: null,
-      family_history: null,
-      user_id: null,
+      chiefComplaint: null,
+      vaccinationHistory: null,
+      reservationId: null,
+      personalHistory: null,
+      createUid: null,
+      familyHistory: null,
+      userId: null,
       temperature: null,
-      date_of_birth: null,
-      blood_type: null,
-      pain_score: null,
-      write_uid: null,
+      dateOfBirth: null,
+      bloodType: null,
+      painScore: null,
+      writeUid: null,
       bmi: null,
-      physical_examination: null,
-      respiratory_rate: null,
-      onset_date: null,
+      physicalExamination: null,
+      respiratoryRate: null,
+      onsetDate: null,
       remarks: null,
-      history_of_present_illness: null,
-      past_medical_history: null,
-      allergic_history: null,
-      preliminary_diagnosis: null,
+      historyOfPresentIllness: null,
+      pastMedicalHistory: null,
+      allergicHistory: null,
+      preliminaryDiagnosis: null,
       name: null,
-      identity_card: null,
-      imaging_examination: null,
+      identityCard: null,
+      imagingExamination: null,
       gender: null,
-      created_at: null,
-      treatment_recommendation: null,
-      oxygen_saturation: null
+      createdAt: null,
+      treatmentRecommendation: null,
+      oxygenSaturation: null
     }
   },
   onLoad: function(options) {
@@ -94,7 +93,6 @@ Page({
       activeIndex: e.currentTarget.id
     });
   },
-
   onReady: function() {
     // 页面渲染完成
   },
@@ -106,5 +104,29 @@ Page({
   },
   onUnload: function() {
     // 页面关闭
+  },
+  bindSliderChangeBMI: function(e) {
+    this.setData({ "info.bmi": e.detail.value });
+  },
+  bindSliderChangeTemperature: function(e) {
+    this.setData({ "info.temperature": e.detail.value });
+  },
+  bindSliderChangePulse: function(e) {
+    this.setData({ "info.pulse": e.detail.value });
+  },
+  bindSliderChangeRespiratoryRate: function(e) {
+    this.setData({ "info.respiratoryRate": e.detail.value });
+  },
+  bindSliderChangeSystolicPressure: function(e) {
+    this.setData({ "info.systolicPressure": e.detail.value });
+  },
+  bindSliderChangeDiastolicPressure: function(e) {
+    this.setData({ "info.diastolicPressure": e.detail.value });
+  },
+  bindSliderChangeOxygenSaturation: function(e) {
+    this.setData({ "info.oxygenSaturation": e.detail.value });
+  },
+  bindSliderChangePainScore: function(e) {
+    this.setData({ "info.painScore": e.detail.value });
   }
 });

@@ -27,12 +27,19 @@ Page({
 
 	// 用户登录示例
 	login: function() {
-		if (this.data.logged){
+		var that = this;
+    that.unionIdForUserId();
+
+		if(this.data.logged){
 			return;
+    }
+    console.log(app.globalData.userId);
+
+    if(!app.globalData.userId){
+      that.unionIdForUserId();
     }
 
 		util.showBusy('正在登录')
-		var that = this
 
 		// 调用登录接口
 		qcloud.login({
@@ -41,26 +48,28 @@ Page({
 					util.showSuccess('登录成功')
 					that.setData({userInfo: result, logged: true})
 					app.globalData.userInfo = result
-					app.globalData.logged = true
+          app.globalData.logged = true
+          that.unionIdForUserId();
 				} else {
 					// 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
 					qcloud.request({
-						url: config.service.requestUrl,
-						login: true,
-						success(result) {
-							util.showSuccess('登录成功')
-							that.setData({
+            url: config.service.requestUrl,
+            login: true,
+            success(result) {
+              util.showSuccess("登录成功");
+              that.setData({
                 userInfo: result.data.data,
                 logged: true
               });
-							app.globalData.userInfo = result.data.data
-							app.globalData.logged = true
-						},
-						fail(error) {
-							util.showModel('请求失败', error)
-							console.log('request fail', error)
-						}
-					})
+              app.globalData.userInfo = result.data.data;
+              app.globalData.logged = true;
+              that.unionIdForUserId();
+            },
+            fail(error) {
+              util.showModel("请求失败", error);
+              console.log("request fail", error);
+            }
+          });
 				}
 			},
 
@@ -69,5 +78,29 @@ Page({
 				console.log('登录失败', error)
 			}
 		})
-	}
+  },
+
+  unionIdForUserId: function() {
+    console.log("unionIdForUserId .....");
+    // console.log(app.globalData.userInfo);
+    // console.log(app.globalData.userInfo.unionId);
+
+    if ((app.globalData.userInfo && !app.globalData.userId) && app.globalData.userInfo.unionId) {
+      wx.request({
+        url: config.service.host + "/weapp/exchangeUnionIdForUserId/" + app.globalData.userInfo.unionId,
+        success(result) {
+          util.showSuccess("获取用户Id成功");
+          console.log(result);
+          console.log("xxxxx");
+          console.log(result.data);
+          console.log(result.data.data.unionId);
+          app.globalData.userId = result.data.data.unionId;
+        },
+        fail(error) {
+          util.showModel("请求失败", error);
+          console.log("request fail", error);
+        }
+      });
+    }
+  }
 })

@@ -27,6 +27,7 @@ router.get('/medical_records', controllers.mr.getAll)
 router.get('/medical_records/:id', controllers.mr.getOne)
 
 router.get("/unionIdForUserId/:id", controllers.mr.unionIdForUserId);
+router.get("/exchangeUnionIdForUserId/:unionId", controllers.mr.exchangeUnionIdForUserId );
 
 // --- 信道服务接口 Demo --- //
 // GET  用来响应请求信道地址的

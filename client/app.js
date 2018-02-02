@@ -9,6 +9,7 @@ var app = getApp()
 App({
 
 	globalData: {
+    userId: null,
 		userInfo: {},
 		logged: false,
 		medical_records: null

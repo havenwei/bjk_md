@@ -55,14 +55,14 @@
 		<view class="weui-flex">
 			<view class="label">身高(cm)</view>
 			<view class="weui-flex__item">
-        {{info.height}}
+        		{{info.height}}
 			</view>
 		</view>
 
 		<view class="weui-flex">
 			<view class="label">体重(kg)</view>
 			<view class="weui-flex__item">
-        {{info.weight}}
+        		{{info.weight}}
 			</view>
 		</view>
 
@@ -70,7 +70,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-          {{info.chiefComplaint}}
+          			{{info.chiefComplaint}}
 				</view>
 			</view>
 		</view>
