@@ -84,5 +84,14 @@ Page({
   },
   onUnload:function(){
     // 页面关闭
+  },
+  goToEditPage:function(e){
+    console.log(e)
+
+    var id = this.data.info.id;
+    console.log(id);
+    var url = "../mr/edit?id=" + id;
+    console.log(url);
+    wx.redirectTo({ url:  url });
   }
 })

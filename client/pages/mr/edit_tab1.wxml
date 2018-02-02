@@ -4,7 +4,7 @@
 		<view class="weui-flex">
 			<view class="label">姓名</view>
 			<view class="weui-flex__item__show">
-				<input class="weui-input" name="name" placeholder="请输入姓名"/>
+				<input class="weui-input" name="name" value="{{info.name}}" placeholder="请输入姓名"/>
 			</view>
 		</view>
 
@@ -52,6 +52,7 @@
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
 					<textarea name="chief_complaint" class="weui-textarea" placeholder="" style="height: 3.3em"/>
+					<view class="weui-textarea-counter">0/200</view>
 				</view>
 			</view>
 		</view>

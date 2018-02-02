@@ -51,6 +51,7 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
     console.log(options)
     var that = this;
+    var that = this;
     wx.request({
       url: `${config.service.host}/weapp/medical_records/${options.id}`,
       method: "GET",
@@ -61,7 +62,8 @@ Page({
         console.log(medical_record);
         that.setData({
           info: medical_record
-        })
+        });
+        console.log(that.data.info)
       }
     });
   },

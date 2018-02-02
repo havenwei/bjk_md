@@ -84,7 +84,7 @@
 				</view>
 			</view>
 		</view> -->
-		<view class="weui-cells__title">生理指标</view>
+
 		<view class="weui-flex">
 			<view class="label">BMI指数</view>
 			<view class="weui-flex__item">
