@@ -129,6 +129,9 @@
 			</view>
 		</view>
 
+		<view class="weui-btn-area">
+			<button formType="submit" class="weui-btn" type="primary" bindtap="showTopTips">编辑</button>
+		</view>
 	</scroll-view>
 </template>
 <!-- tab1模板 end-->
@@ -270,6 +273,9 @@
 			</view>
 		</view>
 
+		<view class="weui-btn-area">
+			<button formType="submit" class="weui-btn" type="primary" bindtap="showTopTips">编辑</button>
+		</view>
 	</scroll-view>
 </template>
 
@@ -303,6 +309,15 @@
 			</view>
 		</view>
 	</view>
+
+	<view class="weui-btn-area">
+		<button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+		disabled="{{disabled}}" bindtap="primary"> 编辑 </button>
+	</view>
+
+	<navigator url="./edit" open-type="navigate" class="weui-btn" type="primary" bindtap="showTopTips">
+		<text>编辑</text>
+	</navigator>
 
 </template>
 

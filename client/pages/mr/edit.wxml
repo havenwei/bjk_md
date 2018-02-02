@@ -1,0 +1,32 @@
+<import src="tab1.wxml"/>
+<import src="tab2.wxml"/>
+<import src="tab3.wxml"/>
+
+<!--pages/mr/new.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset" action="/patients/medical_records">
+	<view class="page">
+		<view class="page__bd">
+			<view class="weui-tab">
+				<view class="weui-navbar">
+					<block wx:for-items="{{tabs}}" wx:key="{{index}}">
+						<view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+							<view class="weui-navbar__title">{{item}}</view>
+						</view>
+					</block>
+					<view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+				</view>
+				<view class="weui-tab__panel">
+					<view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+						<template is="tab1" data="{{hSelectedIndex,wSelectedIndex,date,time,heights,weights,imgArr1}}"/>
+					</view>
+					<view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+						<template is="tab2" data="{{heights, weights, bmis, temperatures, respiratory_rates, blood_pressures, oxygen_saturations, pain_scores, index,temperature, pulse, respiratory_rate, blood_pressure, oxygen_saturation, pain_score,bmi,imgArr2}}"/>
+					</view>
+					<view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+						<template is="tab3" data="{{imgArr3}}"/>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</form>
