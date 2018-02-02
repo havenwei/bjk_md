@@ -5,7 +5,6 @@
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
 					<textarea name="physical_examination" class="weui-textarea" placeholder="" style="height: 3.3em"/>
-					<view class="weui-textarea-counter">0/200</view>
 				</view>
 			</view>
 		</view>
@@ -15,7 +14,6 @@
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
 					<textarea name="laboratory_and_supplementary_examinations" class="weui-textarea" placeholder="" style="height: 3.3em"/>
-					<view class="weui-textarea-counter">0/200</view>
 				</view>
 			</view>
 		</view>
@@ -54,7 +52,6 @@
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
 					<textarea name="imaging_examination" class="weui-textarea" placeholder="" style="height: 3.3em"/>
-					<view class="weui-textarea-counter">0/200</view>
 				</view>
 			</view>
 		</view>
@@ -87,7 +84,7 @@
 				</view>
 			</view>
 		</view> -->
-
+		<view class="weui-cells__title">生理指标</view>
 		<view class="weui-flex">
 			<view class="label">BMI指数</view>
 			<view class="weui-flex__item">
@@ -95,7 +92,7 @@
 				<input name="bmi" value="{{bmi}}" style="display:none"/>
 			</view>
 		</view>
-		
+
 		<view class="weui-flex">
 			<view class="label">体温</view>
 			<view class="weui-flex__item">

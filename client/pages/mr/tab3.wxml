@@ -4,7 +4,6 @@
 		<view class="weui-cell">
 			<view class="weui-cell__bd">
 				<textarea name="preliminary_diagnosis" class="weui-textarea" placeholder="请输入初步咨询意见" style="height: 3.3em"/>
-				<view class="weui-textarea-counter">0/200</view>
 			</view>
 		</view>
 	</view>
@@ -14,7 +13,6 @@
 		<view class="weui-cell">
 			<view class="weui-cell__bd">
 				<textarea name="treatment_recommendation" class="weui-textarea" placeholder="请输入治疗意见" style="height: 3.3em"/>
-				<view class="weui-textarea-counter">0/200</view>
 			</view>
 		</view>
 	</view>
@@ -24,7 +22,6 @@
 		<view class="weui-cell">
 			<view class="weui-cell__bd">
 				<textarea name="remarks" class="weui-textarea" placeholder="请输入备注" style="height: 3.3em"/>
-				<view class="weui-textarea-counter">0/200</view>
 			</view>
 		</view>
 	</view>
