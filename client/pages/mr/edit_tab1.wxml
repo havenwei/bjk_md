@@ -129,7 +129,7 @@
             </view>
 
 		<view class="weui-btn-area">
-			<button formType="submit" class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
+			<button formType="submit" class="weui-btn" type="primary" bindtap="formSubmit">确定</button>
 		</view>
 
 	</scroll-view>

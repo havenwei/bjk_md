@@ -5,7 +5,7 @@ var graphql = require('graphql.js')
 var graph = graphql("http://wx.baojiankang.cc/graphql")
 
 var allMedicalRecordsByUserId = `query allMedicalRecordsByUserId {
-                                    allMedicalRecordsByUserId(user_id: 1){
+                                    allMedicalRecordsByUserId(user_id: $id){
                                             id
                                             name
                                             gender
@@ -53,7 +53,7 @@ var medicalRecordById = `query medicalRecordById($id: Int!) {
                           }`;
 
 
-var createMR = `mutation createMR($medical_record: MedicalRecordInputType!){
+var createMR = `mutation createMedicalRecord($medical_record: MedicalRecordInputType!){
                   createMedicalRecord(medical_record: $medical_record) {
                     id
                     name
@@ -61,12 +61,15 @@ var createMR = `mutation createMR($medical_record: MedicalRecordInputType!){
                 }`;
 
 
-var updateMR = `mutation createMR($medical_record: MedicalRecordInputType!){
-                  createMedicalRecord(medical_record: $medical_record) {
+var updateMR = `mutation updateMedicalRecord($medical_record: MedicalRecordInputType!){
+                  updateMedicalRecord(medical_record: $medical_record) {
                     id
                   }
                `;
 
+var unionIdForUserId = `query unionIdForUserId(id: $id){
+  unionIdForUserId(id: $id)
+}`;
 
 async function getOne(ctx, next) {
   const id = parseInt(ctx.params.id);
@@ -75,7 +78,8 @@ async function getOne(ctx, next) {
 }
 
 async function getAll(ctx, next) {
-  const data = await graph(allMedicalRecordsByUserId)();
+  const id = parseInt(ctx.params.id);
+  const data = await graph(allMedicalRecordsByUserId, { id: id})();
   console.log(data);
   ctx.state.data = { medical_records: data.allMedicalRecordsByUserId };
 
@@ -93,10 +97,11 @@ async function post(ctx, next) {
 // curl -X PATCH -d name=val2 http://babycare.yhuan.cc/fa_medical_record?id=eq.1
 async function update(ctx, next) {
   // const data = await Api.patch(`/fa_medical_record?id=eq.${id}`);
-  console.log(data);
+  console.log(ctx.request.body);
   const data = await graph(updateMR, {
-      medical_record: ctx.request.body
+    medical_record: ctx.request.body
   });
+  console.log(data);
   ctx.state.data = { status: "OK" };
 }
 
@@ -105,10 +110,19 @@ async function destroy(ctx, next) {
   // ctx.state.data = { medical_records: data };
 }
 
+async function unionIdForUserId(ctx, next) {
+  const id = parseInt(ctx.params.id);
+  const data = await graph(unionIdForUserId, { id: id })
+  ctx.state.data = {
+    data: data
+  }
+}
+
 module.exports = {
   post,
   getOne,
   getAll,
   update,
-  destroy
+  destroy,
+  unionIdForUserId
 };

@@ -4,16 +4,16 @@ var config = require('../../config')
 var app = getApp()
 
 Page({
-  data:{
+  data: {
     tabs: ["病历内容", "检查结果", "用药治疗"],
     activeIndex: "0",
-    info:{
+    info: {
       id: null,
       create_date: null,
       write_date: null,
       weight: null,
       laboratory_and_supplementary_examinations: null,
-      updated_at:null,
+      updated_at: null,
       pulse: null,
       height: null,
       blood_pressure: null,
@@ -42,14 +42,14 @@ Page({
       identity_card: null,
       imaging_examination: null,
       gender: null,
-      created_at:null,
+      created_at: null,
       treatment_recommendation: null,
       oxygen_saturation: null
     }
   },
-  onLoad:function(options){
+  onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
-    console.log(options)
+    console.log(options);
     var that = this;
     var that = this;
     wx.request({
@@ -63,28 +63,48 @@ Page({
         that.setData({
           info: medical_record
         });
-        console.log(that.data.info)
+        console.log(that.data.info);
       }
     });
   },
-
-  tabClick: function (e) {
-      this.setData({
-          sliderOffset: e.currentTarget.offsetLeft,
-          activeIndex: e.currentTarget.id
-      });
+  formSubmit: function(e) {
+    var that = this;
+    // var formData = util.params(e.detail.value);
+    var formData = Object.assign({}, e.detail.value, {
+      id: that.data.info.id
+    });
+    console.log(formData);
+    wx.request({
+      url: config.service.host + "/weapp/medical_records/" + that.data.info.id,
+      data: formData,
+      method: "PUT",
+      success: function(res) {
+        console.log(res.statusCode);
+        if (res.statusCode == 200) {
+          wx.redirectTo({
+            url: "../mr/index"
+          });
+        }
+      }
+    });
+  },
+  tabClick: function(e) {
+    this.setData({
+      sliderOffset: e.currentTarget.offsetLeft,
+      activeIndex: e.currentTarget.id
+    });
   },
 
-  onReady:function(){
+  onReady: function() {
     // 页面渲染完成
   },
-  onShow:function(){
+  onShow: function() {
     // 页面显示
   },
-  onHide:function(){
+  onHide: function() {
     // 页面隐藏
   },
-  onUnload:function(){
+  onUnload: function() {
     // 页面关闭
   }
-})
+});

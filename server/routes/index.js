@@ -26,6 +26,8 @@ router.put('/medical_records/:id', controllers.mr.update)
 router.get('/medical_records', controllers.mr.getAll)
 router.get('/medical_records/:id', controllers.mr.getOne)
 
+router.get("/unionIdForUserId/:id", controllers.mr.unionIdForUserId);
+
 // --- 信道服务接口 Demo --- //
 // GET  用来响应请求信道地址的
 router.get('/tunnel', controllers.tunnel.get)
