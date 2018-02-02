@@ -70,7 +70,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-          {{info.chief_complaint}}
+          {{info.chiefComplaint}}
 				</view>
 			</view>
 		</view>
@@ -79,7 +79,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-          {{info.history_of_present_illness}}
+          {{info.historyOfPresentIllness}}
 				</view>
 			</view>
 		</view>
@@ -88,7 +88,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-          {{info.past_medical_history}}
+          {{info.pastMedicalHistory}}
 				</view>
 			</view>
 		</view>
@@ -97,7 +97,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					{{info.allergic_history}}
+					{{info.allergicHistory}}
 				</view>
 			</view>
 		</view>
@@ -106,7 +106,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					{{info.personal_history}}
+					{{info.personalHistory}}
 				</view>
 			</view>
 		</view>
@@ -115,7 +115,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					{{info.family_history}}
+					{{info.familyHistory}}
 				</view>
 			</view>
 		</view>
@@ -124,7 +124,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					{{info.family_history}}
+					{{info.vaccinationHistory}}
 				</view>
 			</view>
 		</view>
@@ -140,7 +140,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					{{info.physical_examination}}
+					{{info.physicalExamination}}
 				</view>
 			</view>
 		</view>
@@ -149,7 +149,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					{{info.laboratory_and_supplementary_examinations}}
+					{{info.laboratoryAndSupplementaryExaminations}}
 				</view>
 			</view>
 		</view>
@@ -187,7 +187,7 @@
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">
 				<view class="weui-cell__bd">
-					{{info.imaging_examination}}
+					{{info.imagingExamination}}
 				</view>
 			</view>
 		</view>
@@ -245,7 +245,7 @@
 		<view class="weui-flex">
 			<view class="label">呼吸(次／分钟)</view>
 			<view class="weui-flex__item">
-				{{info.respiratory_rate}}
+				{{info.respiratoryRate}}
 			</view>
 		</view>
 
@@ -259,14 +259,14 @@
 		<view class="weui-flex">
 			<view class="label">氧饱和度(%)</view>
 			<view class="weui-flex__item">
-    		{{info.oxygen_saturation}}
+    		{{info.oxygenSaturation}}
 			</view>
 		</view>
 
 		<view class="weui-flex">
 			<view class="label">疼痛指数</view>
 			<view class="weui-flex__item">
-				{{info.pain_score}}
+				{{info.painScore}}
 			</view>
 		</view>
 

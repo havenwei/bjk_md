@@ -1,9 +1,8 @@
 //app.js
-const wechat = require('./utils/wechat.js')
-const Q = require('./utils/Q.js')
-var util = require('./utils/util.js')
-
+// const wechat = require('./utils/wechat.js')
+// const Q = require('./utils/Q.js')
 var qcloud = require('./vendor/wafer2-client-sdk/index')
+var util = require('./utils/util.js')
 var config = require('./config')
 var app = getApp()
 

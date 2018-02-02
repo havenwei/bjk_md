@@ -27,8 +27,9 @@ Page({
 
 	// 用户登录示例
 	login: function() {
-		if (this.data.logged)
-			return
+		if (this.data.logged){
+			return;
+    }
 
 		util.showBusy('正在登录')
 		var that = this
@@ -48,8 +49,11 @@ Page({
 						login: true,
 						success(result) {
 							util.showSuccess('登录成功')
-							that.setData({userInfo: result.data.data, logged: true})
-							app.globalData.userInfo = result.data.data.userInfo
+							that.setData({
+                userInfo: result.data.data,
+                logged: true
+              });
+							app.globalData.userInfo = result.data.data
 							app.globalData.logged = true
 						},
 						fail(error) {

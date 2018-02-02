@@ -8,7 +8,7 @@ Page({
   data:{
     medical_records: null
   },
-  onLoad:function(options){
+  onLoad: function(options){
     var that = this;
     wx.request({
         url: config.service.host + "/weapp/medical_records",
@@ -18,11 +18,13 @@ Page({
           console.log(res.statusCode)
           console.log(res.data)
 
-          var medical_records = res.data.data.medical_records;
+          var medical_records = res.data.data.medical_records || [];
           console.log(medical_records)
-          medical_records.map( (element, index) => {
-            element.created_at = util.formatTime(new Date(element.created_at))
-          })
+          if(medical_records.length > 0){
+            medical_records.map( (element, index) => {
+              element.created_at = util.formatTime(new Date(element.created_at))
+            })
+          }
           that.setData({
             medical_records: medical_records
           })
