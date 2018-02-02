@@ -2,7 +2,7 @@ const queryString = require("query-string");
 // const graphql = require("graphql")
 // const postgraphql = require('postgraphql').postgraphql
 var graphql = require('graphql.js')
-var graph = graphql("http://haven.natapp1.cc/graphql")
+var graph = graphql("http://babycare.yhuan.cc/graphql")
 
 var allMedicalRecordsByUserId = graph(`query allMedicalRecordsByUserId{
           allMedicalRecordsByUserId(user_id: 1){
@@ -32,20 +32,13 @@ var medicalRecordsById = graph(`query medicalRecordsById($id: Int!) {
 
 
 var createMR = graph(`
-        mutation createMR {
-        createFaMedicalRecord(input: {
-          faMedicalRecord: {
-            bmi: $bmi,
-            painScore: $painScore}
-          }){
-          faMedicalRecord {
-            bmi
-            personalHistory
-            temperature
-            oxygenSaturation
+        mutation createMR($medical_record: MedicalRecordInputType!){
+          createMedicalRecord(medical_record: $medical_record) {
+            id
+            name
           }
         }
-}`)
+`)
 
 
 async function getOne(ctx, next) {
@@ -55,14 +48,6 @@ async function getOne(ctx, next) {
 }
 
 async function getAll(ctx, next) {
-  // allMedicalRecordsByUserId().then(function(data) {
-  //   console.log(data);
-  // //   mrs = data.allMedicalRecordsByUserId;
-  // //   console.log(mrs);
-  //   console.log({ medical_records: data.allMedicalRecordsByUserId });
-  //   ctx.state.data = { medical_records: data.allMedicalRecordsByUserId };
-  // });
-
   const data = await allMedicalRecordsByUserId()
   console.log(data);
   ctx.state.data = { medical_records: data.allMedicalRecordsByUserId };
@@ -70,10 +55,10 @@ async function getAll(ctx, next) {
 }
 
 async function post(ctx, next) {
-  const params = queryString.stringify(ctx.request.body);
-  const data = await Api.post("/fa_medical_record").send(params);
-  // const data = await Api.post("/fa_medical_record").type('json').send(ctx.request.body)
-  // const data = await Api.post("/fa_medical_record").send("name=uuuuu")
+  // const params = queryString.stringify(ctx.request.body);
+  const data = await createMR({
+    medical_record: Object.assign({}, ctx.request.body, { user_id: 1 })
+  });
   console.log(data);
   ctx.state.data = {
     data: data

@@ -186,7 +186,7 @@ Page({
         console.log(res.statusCode);
         console.log(res.data);
         if (res.statusCode == 200) {
-          wx.navigateTo({
+          wx.redirectTo({
             url: "../mr/index"
           });
         }
