@@ -54,7 +54,7 @@
 
 		<view class="weui-flex">
 			<view class="label">身高(cm)</view>
-			<view class="weui-flex__item__">
+			<view class="weui-flex__item">
         {{info.height}}
 			</view>
 		</view>
@@ -253,9 +253,16 @@
 		</view>
 
 		<view class="weui-flex">
-			<view class="label">血压(mmHg)</view>
+			<view class="label">舒张压(mmHg)</view>
 			<view class="weui-flex__item">
-				{{info.blood_pressure}}
+				{{info.diastolicPressure}}
+			</view>
+		</view>
+
+		<view class="weui-flex">
+			<view class="label">收缩压(mmHg)</view>
+			<view class="weui-flex__item">
+				{{info.systolicPressure}}
 			</view>
 		</view>
 
@@ -287,7 +294,7 @@
 	<view class="weui-cells weui-cells_after-title">
 		<view class="weui-cell">
 			<view class="weui-cell__bd">
-    		{{info.preliminary_diagnosis}}
+		{{info.preliminaryDiagnosis}}
 			</view>
 		</view>
 	</view>
@@ -296,7 +303,7 @@
 	<view class="weui-cells weui-cells_after-title">
 		<view class="weui-cell">
 			<view class="weui-cell__bd">
-				{{info.treatment_recommendation}}
+				{{info.treatmentRecommendation}}
 			</view>
 		</view>
 	</view>

@@ -23,10 +23,10 @@ var medicalRecordsById = `query medicalRecordsById($id: Int!) {
                                 id
                                 name
                                 gender
+                                height
+                                weight
                                 identityCard
                                 chiefComplaint
-                                updatedAt
-                                createdAt
                                 vaccinationHistory
                                 familyHistory
                                 personalHistory
@@ -44,6 +44,11 @@ var medicalRecordsById = `query medicalRecordsById($id: Int!) {
                                 painScore
                                 diastolicPressure
                                 systolicPressure
+                                preliminaryDiagnosis
+                                treatmentRecommendation
+                                remarks
+                                createdAt
+                                updatedAt
                               }
                           }`;
 
