@@ -30,7 +30,7 @@
 		<view class="weui-flex">
 			<view class="label">BMI指数</view>
 			<view class="weui-flex__item">
-				<slider bindchange="bindSliderChangeBMI" show-value value="{{info.bmi}}"/>
+				<slider bindchange="bindSliderChangeBMI" min="12" max="42" show-value value="{{info.bmi}}"/>
 				<input name="bmi" value="{{info.bmi}}" style="display:none"/>
 			</view>
 		</view>
@@ -38,7 +38,7 @@
 		<view class="weui-flex">
 			<view class="label">体温</view>
 			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeTemperature' show-value value="{{info.temperature}}"/>
+				<slider bindchange='bindSliderChangeTemperature' min="22" max="43" show-value value="{{info.temperature}}"/>
 				<input name="temperature" value="{{info.temperature}}" style="display:none"/>
 			</view>
 		</view>
@@ -46,7 +46,7 @@
 		<view class="weui-flex">
 			<view class="label">脉搏(次／分钟)</view>
 			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangePulse' show-value value="{{info.pulse}}"/>
+				<slider bindchange='bindSliderChangePulse' min="35" max="120" show-value value="{{info.pulse}}"/>
 				<input name="pulse" value="{{info.pulse}}" style="display:none"/>
 			</view>
 		</view>
@@ -54,7 +54,7 @@
 		<view class="weui-flex">
 			<view class="label">呼吸(次／分钟)</view>
 			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeRespiratoryRate' show-value value="{{info.respiratoryRate}}"/>
+				<slider bindchange='bindSliderChangeRespiratoryRate' min="5" max="50" show-value value="{{info.respiratoryRate}}"/>
 				<input name="respiratory_rate" value="{{info.respiratoryRate}}" style="display:none"/>
 			</view>
 		</view>
@@ -62,7 +62,7 @@
 		<view class="weui-flex">
 			<view class="label">收缩压(mmHg)</view>
 			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeSystolicPressure' show-value value="{{info.systolicPressure}}"/>
+				<slider bindchange='bindSliderChangeSystolicPressure' min="80" max="190" show-value value="{{info.systolicPressure}}"/>
 				<input name="systolic_pressure" value="{{info.systolicPressure}}" style="display:none"/>
 			</view>
 		</view>
@@ -70,7 +70,7 @@
 		<view class="weui-flex">
 			<view class="label">舒张压(mmHg)</view>
 			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeDiastolicPressure' show-value value="{{info.diastolicPressure}}"/>
+				<slider bindchange='bindSliderChangeDiastolicPressure' min="60" max="120" show-value value="{{info.diastolicPressure}}"/>
 				<input name="diastolic_pressure" value="{{info.diastolicPressure}}" style="display:none"/>
 			</view>
 		</view>
@@ -78,7 +78,7 @@
 		<view class="weui-flex">
 			<view class="label">氧饱和度(%)</view>
 			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeOxygenSaturation' show-value value="{{info.oxygenSaturation}}"/>
+				<slider bindchange='bindSliderChangeOxygenSaturation' min="75" max="100" show-value value="{{info.oxygenSaturation}}"/>
 				<input name="oxygen_saturation" value="{{info.oxygenSaturation}}" style="display:none"/>
 			</view>
 		</view>
@@ -86,7 +86,7 @@
 		<view class="weui-flex">
 			<view class="label">疼痛指数</view>
 			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangePainScore' show-value value="{{info.painScore}}"/>
+				<slider bindchange='bindSliderChangePainScore' min="1" max="10" show-value value="{{info.painScore}}"/>
 				<input name="pain_score" value="{{info.painScore}}" style="display:none"/>
 			</view>
 		</view>
