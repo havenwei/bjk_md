@@ -57,27 +57,23 @@ Page({
     var that = this;
     // this.uploadAndAppend(that.data.imgArr1);
     this.uploadAndAppend(function(res) {
-      that.data.imgArr1.push(res.data.imgUrl);
-      that.setData({
-        imgArr1: that.data.imgArr1
-      });
+      that.data.imgArr1.push({ data: res.data.imgUrl, category: "病史" });
+      that.setData({ imgArr1: that.data.imgArr1 });
     });
   },
 
   doUpload2: function() {
     var that = this;
     this.uploadAndAppend(function(res) {
-      that.data.imgArr2.push(res.data.imgUrl);
-      that.setData({
-        imgArr2: that.data.imgArr2
-      });
+      that.data.imgArr2.push({ data: res.data.imgUrl, category: "检查" });
+      that.setData({ imgArr2: that.data.imgArr2 });
     });
   },
 
   doUpload3: function() {
     var that = this;
     this.uploadAndAppend(function(res) {
-      that.data.imgArr3.push(res.data.imgUrl);
+      that.data.imgArr3.push({ data: res.data.imgUrl, category: "检查" });
       that.setData({ imgArr3: that.data.imgArr3 });
     });
   },
@@ -177,33 +173,19 @@ Page({
     var imgArr2 = that.data.imgArr2;
     var imgArr3 = that.data.imgArr3;
     var medical_record_images_attributes = []
-    for (var i = 0; i < imgArr1.length; i++) {
-      medical_record_images_attributes.push({
-        data: imgArr1[i],
-        category: "病史"
-      });
-    }
-
-    for (var i = 0; i < imgArr2.length; i++) {
-      medical_record_images_attributes.push({
-        data: imgArr1[i],
-        category: "检查"
-      });
-    }
-
-    for (var i = 0; i < imgArr3.length; i++) {
-      medical_record_images_attributes.push({
-        data: imgArr1[i],
-        category: "诊断"
-      });
-    }
-    // var dataToSubmit = Object.assign({}, formData, { medical_record_images_attributes: medical_record_images_attributes );
-    var dataToSubmit = {
-      formData: formData,
-      medical_record_images_attributes: medical_record_images_attributes
-    }
+    console.log(imgArr1)
+    console.log(imgArr2)
+    console.log(imgArr3)
+    medical_record_images_attributes= imgArr1.concat(imgArr2).concat(imgArr3);
+    console.log(medical_record_images_attributes);
+    var dataToSubmit = Object.assign({}, formData, { medical_record_images_attributes: medical_record_images_attributes});
+    // var dataToSubmit = {
+    //   formData: formData,
+    //   medical_record_images_attributes: medical_record_images_attributes
+    // }
+    console.log(dataToSubmit)
     wx.request({
-      url: config.service.host + "/weapp/medical_records",
+      url: config.service.localhost + "/weapp/medical_records",
       data: dataToSubmit,
       method: "POST",
       success: function(res) {

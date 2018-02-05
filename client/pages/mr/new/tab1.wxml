@@ -118,10 +118,10 @@
 						<li class="weui-uploader__file" wx:for="{{imgArr1}}" wx:key="*this">
 							<image
 								class="uploader-image"
-								src="{{item}}"
+								src="{{item.data}}"
 								mode="aspectFit"
 								bindtap="previewImg1"
-								data-imgUrl="{{item}}"></image>
+								data-imgUrl="{{item.data}}"></image>
 						</li>
 						<li class="weui-uploader__input-box" bindtap="doUpload1"></li>
 					</ul>
@@ -129,8 +129,7 @@
             </view>
 
 		<view class="weui-btn-area">
-			<button formType="submit" class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
+			<button formType="submit" class="weui-btn" type="primary">确定</button>
 		</view>
-
 	</scroll-view>
 </template>

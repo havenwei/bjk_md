@@ -3,7 +3,7 @@
 	<view class="weui-cells weui-cells_after-title">
 		<view class="weui-cell">
 			<view class="weui-cell__bd">
-				<textarea name="preliminary_diagnosis" value="{{info.preliminaryDiagnosis}}" class="weui-textarea" placeholder="请输入初步咨询意见" style="height: 3.3em"/>
+				<textarea name="preliminary_diagnosis" class="weui-textarea" placeholder="请输入初步咨询意见" style="height: 3.3em"/>
 			</view>
 		</view>
 	</view>
@@ -12,7 +12,7 @@
 	<view class="weui-cells weui-cells_after-title">
 		<view class="weui-cell">
 			<view class="weui-cell__bd">
-				<textarea name="treatment_recommendation" value="{{info.treatmentRecommendation}}" class="weui-textarea" placeholder="请输入治疗意见" style="height: 3.3em"/>
+				<textarea name="treatment_recommendation" class="weui-textarea" placeholder="请输入治疗意见" style="height: 3.3em"/>
 			</view>
 		</view>
 	</view>
@@ -21,7 +21,7 @@
 	<view class="weui-cells weui-cells_after-title">
 		<view class="weui-cell">
 			<view class="weui-cell__bd">
-				<textarea name="remarks" value="{{info.remarks}}" class="weui-textarea" placeholder="请输入备注" style="height: 3.3em"/>
+				<textarea name="remarks" class="weui-textarea" placeholder="请输入备注" style="height: 3.3em"/>
 			</view>
 		</view>
 	</view>
@@ -30,8 +30,14 @@
 	<view class="weui-cells">
 		<view class="weui-cell">
 			<ul class="weui-uploader__files">
-				<li class="weui-uploader__file" wx:for="{{info.imgArr3}}" wx:key="*this">
-					<image class="uploader-image" src="{{item.data}}" mode="aspectFit" bindtap="previewImg3" ></image>
+				<li class="weui-uploader__file" wx:for="{{imgArr3}}" wx:key="*this">
+					<image
+						class="uploader-image"
+						src="{{item.data}}"
+						mode="aspectFit"
+						bindtap="previewImg3"
+						data-imgUrl="{{item.data}}"
+					></image>
 				</li>
 				<li class="weui-uploader__input-box" bindtap="doUpload3"></li>
 			</ul>
@@ -40,6 +46,6 @@
 
 
 	<view class="weui-btn-area">
-		<button formType="submit" class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
+		<button formType="submit" class="weui-btn" type="primary">确定</button>
 	</view>
 </template>

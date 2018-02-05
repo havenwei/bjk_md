@@ -56,6 +56,6 @@ App({
 
 	onLaunch: function() {
 		qcloud.setLoginUrl(config.service.loginUrl)
-		this.login()
+    this.login()
 	}
 })

@@ -1,9 +1,9 @@
-<import src="tab1.wxml"/>
-<import src="tab2.wxml"/>
-<import src="tab3.wxml"/>
+<import src="new/tab1.wxml"/>
+<import src="new/tab2.wxml"/>
+<import src="new/tab3.wxml"/>
 
 <!--pages/mr/new.wxml-->
-<form bindsubmit="formSubmit" bindreset="formReset" action="/patients/medical_records">
+<form bindsubmit="formSubmit" bindreset="formReset">
 	<view class="page">
 		<view class="page__bd">
 			<view class="weui-tab">
@@ -17,13 +17,13 @@
 				</view>
 				<view class="weui-tab__panel">
 					<view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-						<template is="tab1" data="{{hSelectedIndex,wSelectedIndex,date,time,heights,weights,imgArr1}}"/>
+						<template is="tab1" data="{{hSelectedIndex,wSelectedIndex,date,time,heights,weights,info,imgArr1}}"/>
 					</view>
 					<view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-						<template is="tab2" data="{{heights, weights, bmis, temperatures, respiratory_rates, blood_pressures, oxygen_saturations, pain_scores, index,temperature, pulse, respiratory_rate, blood_pressure, oxygen_saturation, pain_score,bmi,imgArr2}}"/>
+						<template is="tab2" data="{{info,imgArr2}}"/>
 					</view>
 					<view class="weui-tab__content" hidden="{{activeIndex != 2}}">
-						<template is="tab3" data="{{imgArr3}}"/>
+						<template is="tab3" data="{{info,imgArr3}}"/>
 					</view>
 				</view>
 			</view>

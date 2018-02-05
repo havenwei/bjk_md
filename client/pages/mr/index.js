@@ -11,27 +11,27 @@ Page({
   onLoad: function(options){
     var that = this;
     wx.request({
-        url: config.service.host + "/weapp/medical_records?user_id=" + app.globalData.userId,
-        method: 'GET',
-        success: function(res) {
-          console.log(res);
-          console.log(res.statusCode)
-          console.log(res.data)
+      url: `${config.service.localhost}/weapp/medical_records?user_id=${wx.getStorageSync('userId')}`,
+      method: "GET",
+      success: function(res) {
+        console.log(res);
+        console.log(res.statusCode);
+        console.log(res.data);
 
-          var medical_records = res.data.data.medical_records || [];
-          console.log(medical_records)
-          if(medical_records.length > 0){
-            medical_records.map( (element, index) => {
-              element.created_at = util.formatTime(new Date(element.created_at))
-            })
-          }
-          that.setData({
-            medical_records: medical_records
-          })
-          app.globalData.medical_records = medical_records
-          console.log(app.globalData)
+        var medical_records = res.data.data.medical_records || [];
+        console.log(medical_records);
+        if (medical_records.length > 0) {
+          medical_records.map((element, index) => {
+            element.created_at = util.formatTime(
+              new Date(element.created_at)
+            );
+          });
         }
-    })
+        that.setData({ medical_records: medical_records });
+        app.globalData.medical_records = medical_records;
+        console.log(app.globalData);
+      }
+    });
   },
 
   onReady:function(){

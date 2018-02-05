@@ -87,7 +87,7 @@ Page({
 
     if ((app.globalData.userInfo && !app.globalData.userId) && app.globalData.userInfo.unionId) {
       wx.request({
-        url: config.service.host + "/weapp/exchangeUnionIdForUserId/" + app.globalData.userInfo.unionId,
+        url: `${config.service.host}/weapp/exchangeUnionIdForUserId/${app.globalData.userInfo.unionId}`,
         success(result) {
           util.showSuccess("获取用户Id成功");
           console.log(result);
@@ -95,6 +95,7 @@ Page({
           console.log(result.data);
           console.log(result.data.data.unionId);
           app.globalData.userId = result.data.data.unionId;
+          wx.setStorageSync("userId", app.globalData.userId);
         },
         fail(error) {
           util.showModel("请求失败", error);
