@@ -52,6 +52,18 @@ var medicalRecordById = `query medicalRecordById($id: Int!) {
                                 remarks
                                 createdAt
                                 updatedAt
+                                medical_record_images_categoryA {
+                                  data
+                                  category
+                                }
+                                medical_record_images_categoryB {
+                                  data
+                                  category
+                                }
+                                medical_record_images_categoryC {
+                                  data
+                                  category
+                                }
                               }
                           }`;
 
@@ -91,8 +103,14 @@ async function getAll(ctx, next) {
 
 async function post(ctx, next) {
   // const params = queryString.stringify(ctx.request.body);
+  var body = Object.assign(
+    {},
+    ctx.request.body.formData,
+    ctx.request.body.medical_record_images_attributes
+  );
+  console.log(body)
   const data = await graph(createMR, {
-    medical_record: Object.assign({}, ctx.request.body, { user_id: 1 })
+    medical_record: Object.assign({}, body, { user_id: 1 })
   });
   console.log(data);
   ctx.state.data = { data: data };

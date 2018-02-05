@@ -1,5 +1,4 @@
 // pages/mr/new.js
-// import $ from 'zepto';
 
 var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
 var qcloud = require('../../vendor/wafer2-client-sdk/index')
@@ -14,6 +13,10 @@ Page({
     activeIndex: "0",
     sliderOffset: 0,
     sliderLeft: 0,
+    imgArr1: [],
+    imgArr2: [],
+    imgArr3: [],
+    medical_record_images_attributes: [],
     info: {
       heights: [15, 50, 51, 52, 53, 54, 55, 56, 57],
       weights: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -35,10 +38,7 @@ Page({
       oxygen_saturation: 0,
       pain_score: 0,
       date: "2016-09-01",
-      time: "12:01",
-      imgArr1: [],
-      imgArr2: [],
-      imgArr3: []
+      time: "12:01"
     }
   },
   onLoad: function() {
@@ -104,13 +104,9 @@ Page({
 
           success: function(res) {
             util.showSuccess("上传图片成功");
-            // console.log(res);
+            console.log(res);
             res = JSON.parse(res.data);
-            // console.log(res);
-            // e.push(res.data.imgUrl);
-            // that.setData({
-            //   imgArr: e
-            // });
+            console.log(res);
             callback(res);
           },
 
@@ -167,30 +163,56 @@ Page({
     });
   },
   onShow: function() {
-    // 页面显示
   },
   onHide: function() {
-    // 页面隐藏
   },
   onUnload: function() {
-    // 页面关闭
   },
   formSubmit: function(e) {
     var that = this;
     // var formData = util.params(e.detail.value);
     var formData = e.detail.value;
     console.log(formData);
+    var imgArr1 = that.data.imgArr1;
+    var imgArr2 = that.data.imgArr2;
+    var imgArr3 = that.data.imgArr3;
+    var medical_record_images_attributes = []
+    for (var i = 0; i < imgArr1.length; i++) {
+      medical_record_images_attributes.push({
+        data: imgArr1[i],
+        category: "病史"
+      });
+    }
+
+    for (var i = 0; i < imgArr2.length; i++) {
+      medical_record_images_attributes.push({
+        data: imgArr1[i],
+        category: "检查"
+      });
+    }
+
+    for (var i = 0; i < imgArr3.length; i++) {
+      medical_record_images_attributes.push({
+        data: imgArr1[i],
+        category: "诊断"
+      });
+    }
+    // var dataToSubmit = Object.assign({}, formData, { medical_record_images_attributes: medical_record_images_attributes );
+    var dataToSubmit = {
+      formData: formData,
+      medical_record_images_attributes: medical_record_images_attributes
+    }
     wx.request({
       url: config.service.host + "/weapp/medical_records",
-      data: formData,
+      data: dataToSubmit,
       method: "POST",
       success: function(res) {
-        console.log(res.statusCode);
+        console.log(res);
         console.log(res.data);
         if (res.statusCode == 200) {
-          wx.redirectTo({
-            url: "../mr/index"
-          });
+          // wx.redirectTo({
+          //   url: "../mr/index"
+          // });
         }
       }
     });

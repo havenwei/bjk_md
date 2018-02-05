@@ -7,6 +7,9 @@ Page({
   data: {
     tabs: ["病历内容", "检查结果", "用药治疗"],
     activeIndex: "0",
+    imgArr1: [],
+    imgArr2: [],
+    imgArr3: [],
     info: {
       id: null,
       createDate: null,
@@ -50,7 +53,6 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
     console.log(options);
     var that = this;
-    var that = this;
     wx.request({
       url: `${config.service.host}/weapp/medical_records/${options.id}`,
       method: "GET",
@@ -58,6 +60,11 @@ Page({
         console.log(res.statusCode);
         console.log(res.data);
         var medical_record = res.data.data.medical_record;
+        that.setData({
+          imgArr1: medical_record.medical_record_images_categoryA,
+          imgArr2: medical_record.medical_record_images_categoryB,
+          imgArr3: medical_record.medical_record_images_categoryC
+        })
         console.log(medical_record);
         that.setData({
           info: medical_record

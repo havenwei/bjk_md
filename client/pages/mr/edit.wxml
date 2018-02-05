@@ -2,7 +2,6 @@
 <import src="edit_tab2.wxml"/>
 <import src="edit_tab3.wxml"/>
 
-<!--pages/mr/new.wxml-->
 <form bindsubmit="formSubmit" bindreset="formReset" action="/patients/medical_records">
 	<view class="page">
 		<view class="page__bd">
@@ -17,13 +16,13 @@
 				</view>
 				<view class="weui-tab__panel">
 					<view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-						<template is="tab1" data="{{hSelectedIndex,wSelectedIndex,info}}"/>
+						<template is="tab1" data="{{hSelectedIndex,wSelectedIndex,info, imgArr1}}"/>
 					</view>
 					<view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-						<template is="tab2" data="{{info}}"/>
+						<template is="tab2" data="{{info, imgArr2}}"/>
 					</view>
 					<view class="weui-tab__content" hidden="{{activeIndex != 2}}">
-						<template is="tab3" data="{{info}}"/>
+						<template is="tab3" data="{{info, imgArr3}}"/>
 					</view>
 				</view>
 			</view>

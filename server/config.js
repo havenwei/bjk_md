@@ -6,9 +6,11 @@ const CONF = {
   serverHost: "",
   tunnelServerUrl: "",
   tunnelSignatureKey: "",
-  qcloudAppId: "",
-  qcloudSecretId: "",
-  qcloudSecretKey: "",
+
+  // 对象存储云API密钥
+  qcloudAppId: 1255892295,
+  qcloudSecretId: "AKIDueASVK9IRL2VkkS2LPFrEMFuMZYRRUdW",
+  qcloudSecretKey: "oOjsmSs2yfEZibEbiaCYeU3MPDl23g4C",
 
   // 微信小程序 App ID
   appId: "wx3d77b65e4978ca04",
