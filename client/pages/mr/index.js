@@ -11,7 +11,7 @@ Page({
   onLoad: function(options){
     var that = this;
     wx.request({
-      url: `${config.service.localhost}/weapp/medical_records?user_id=${wx.getStorageSync('userId')}`,
+      url: `${config.service.host}/weapp/medical_records?user_id=${wx.getStorageSync('userId')}`,
       method: "GET",
       success: function(res) {
         console.log(res);

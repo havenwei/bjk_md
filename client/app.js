@@ -65,7 +65,7 @@ App({
     console.log(that.globalData);
     if ((that.globalData.userInfo && !that.globalData.userId) && that.globalData.userInfo.unionId) {
       wx.request({
-        url: `${config.service.localhost}/weapp/exchangeUnionIdForUserId/${that.globalData.userInfo.unionId}`,
+        url: `${config.service.host}/weapp/exchangeUnionIdForUserId/${that.globalData.userInfo.unionId}`,
         success(result) {
           util.showSuccess("获取用户Id成功");
           console.log(result);

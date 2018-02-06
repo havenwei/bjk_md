@@ -18,7 +18,7 @@ Page({
     console.log(options);
     var that = this;
     wx.request({
-      url: `${config.service.localhost}/weapp/medical_records/${options.id}`,
+      url: `${config.service.host}/weapp/medical_records/${options.id}`,
       method: "GET",
       success: function(res) {
         console.log(res.statusCode);

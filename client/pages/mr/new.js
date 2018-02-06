@@ -185,7 +185,7 @@ Page({
     // }
     console.log(dataToSubmit)
     wx.request({
-      url: `${config.service.localhost}/weapp/medical_records`,
+      url: `${config.service.host}/weapp/medical_records`,
       data: dataToSubmit,
       method: "POST",
       success: function(res) {
