@@ -3,15 +3,10 @@
 	<view class="userinfo" bindtap="login">
 		<image class="userinfo-avatar" src="{{logged ? userInfo.avatarUrl : './user-unlogin.png'}}" background-size="cover"></image>
 		<view>
-			<text class="userinfo-nickname">{{logged ? userInfo.nickName : '点击测试登录接口'}}</text>
+			<text class="userinfo-nickname">{{logged ? userInfo.nickName : '登录'}}</text>
 			<text class="userinfo-nickname" wx:if="{{logged}}">{{userInfo.lastLoginTime}}</text>
 		</view>
 	</view>
-
-	<view class="uploader" bindtap="unionIdForUserId">
-		<text>unionId 换 userId</text>
-	</view>
-
 
 	<view class="uploader">
 		<navigator url="../mr/new" open-type="navigate" class="uploader-text">

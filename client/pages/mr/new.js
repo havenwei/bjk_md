@@ -178,14 +178,14 @@ Page({
     console.log(imgArr3)
     medical_record_images_attributes= imgArr1.concat(imgArr2).concat(imgArr3);
     console.log(medical_record_images_attributes);
-    var dataToSubmit = Object.assign({}, formData, { medical_record_images_attributes: medical_record_images_attributes});
+    var dataToSubmit = Object.assign({}, formData, { medical_record_images_attributes: medical_record_images_attributes, userId: wx.getStorageSync('userId')});
     // var dataToSubmit = {
     //   formData: formData,
     //   medical_record_images_attributes: medical_record_images_attributes
     // }
     console.log(dataToSubmit)
     wx.request({
-      url: config.service.localhost + "/weapp/medical_records",
+      url: `${config.service.localhost}/weapp/medical_records`,
       data: dataToSubmit,
       method: "POST",
       success: function(res) {

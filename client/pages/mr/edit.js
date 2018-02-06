@@ -12,42 +12,6 @@ Page({
     imgArr2: [],
     imgArr3: [],
     info: {
-      id: null,
-      createDate: null,
-      writeDate: null,
-      weight: null,
-      laboratoryAndSupplementaryExaminations: null,
-      updatedAt: null,
-      pulse: null,
-      height: null,
-      chiefComplaint: null,
-      vaccinationHistory: null,
-      reservationId: null,
-      personalHistory: null,
-      createUid: null,
-      familyHistory: null,
-      userId: null,
-      temperature: null,
-      dateOfBirth: null,
-      bloodType: null,
-      painScore: null,
-      writeUid: null,
-      bmi: null,
-      physicalExamination: null,
-      respiratoryRate: null,
-      onsetDate: null,
-      remarks: null,
-      historyOfPresentIllness: null,
-      pastMedicalHistory: null,
-      allergicHistory: null,
-      preliminaryDiagnosis: null,
-      name: null,
-      identityCard: null,
-      imagingExamination: null,
-      gender: null,
-      createdAt: null,
-      treatmentRecommendation: null,
-      oxygenSaturation: null
     }
   },
   onLoad: function(options) {
@@ -55,7 +19,7 @@ Page({
     console.log(options);
     var that = this;
     wx.request({
-      url: `${config.service.host}/weapp/medical_records/${options.id}`,
+      url: `${config.service.localhost}/weapp/medical_records/${options.id}`,
       method: "GET",
       success: function(res) {
         console.log(res.statusCode);
@@ -89,7 +53,7 @@ Page({
     // var dataToSubmit = { formData: formData, medical_record_images_attributes: medical_record_images_attributes };
     console.log(formData);
     wx.request({
-      url: config.service.localhost + "/weapp/medical_records/" + that.data.info.id,
+      url: `${config.service.localhost}/weapp/medical_records/${that.data.info.id}`,
       data: dataToSubmit,
       method: "PUT",
       success: function(res) {
