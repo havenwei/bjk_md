@@ -1,5 +1,5 @@
 {
-	"description": "项目配置文件。",
+	"description": "项目配置文件",
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.1",
-	"appid": "wx3d77b65e4978ca04",
-	"projectname": "bjkmd",
+	"appid": "wx218800b558d61f52",
+	"projectname": "MedicalRecord",
 	"isGameTourist": false,
 	"condition": {
 		"search": {

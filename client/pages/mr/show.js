@@ -88,7 +88,6 @@ Page({
   },
   goToEditPage: function(e) {
     console.log(e);
-
     var id = this.data.info.id;
     console.log(id);
     var url = "../mr/edit?id=" + id;

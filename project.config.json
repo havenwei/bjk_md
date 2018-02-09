@@ -10,9 +10,9 @@
 		"minified": true,
 		"newFeature": true
 	},
-	"appid": "wx3d77b65e4978ca04",
-	"projectname": "bjk_md",
-	"libVersion": "1.9.1",
+	"appid": "wx218800b558d61f52",
+	"projectname": "MedicalRecord",
+	"libVersion": "1.9.8",
 	"condition": {
 		"search": {
 			"current": -1,

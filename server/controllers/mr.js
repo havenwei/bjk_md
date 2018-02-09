@@ -110,7 +110,7 @@ async function post(ctx, next) {
   );
   console.log(body)
   const data = await graph(createMR, {
-    medical_record: Object.assign({}, body, { user_id: 1 })
+    medical_record: body
   });
   console.log(data);
   ctx.state.data = { data: data };
@@ -140,15 +140,10 @@ async function exchangeUnionIdForUserId(ctx, next) {
   var unionId = ctx.params.unionId;
   const data = await graph(unionIdForUserId, { id: unionId });
   console.log(data);
-  ctx.state.data = { unionId: data.unionIdForUserId };
-}
-
-async function unionIdForUserId(ctx, next) {
-  console.log(ctx.params);
+  ctx.state.data = { userId: data.unionIdForUserId };
 }
 
 module.exports = {
-  unionIdForUserId,
   exchangeUnionIdForUserId,
   post,
   getOne,

@@ -120,29 +120,25 @@ Page({
   // 预览图片
   previewImg1: function(e) {
     console.log(e.target.dataset);
-    console.log(e.target.dataset.imgUrl);
-    console.log(this.data.imgArr);
     wx.previewImage({
-      current: e.target.dataset.imgUrl,
-      urls: this.data.imgArr1
+      current: e.target.dataset.imgurl,
+      urls: this.data.imgArr1.map(x=>x.data)
     });
   },
 
   previewImg2: function(e) {
     console.log(e.target.dataset);
-    console.log(e.target.dataset.imgUrl);
-    console.log(this.data.imgArr);
     wx.previewImage({
-      current: e.target.dataset.imgUrl,
-      urls: this.data.imgArr1
+      current: e.target.dataset.imgurl,
+      urls: this.data.imgArr2.map(x => x.data)
     });
   },
 
   previewImg3: function(e) {
     console.log(e.target.dataset);
     wx.previewImage({
-      current: e.target.dataset.imgUrl,
-      urls: this.data.imgArr1
+      current: e.target.dataset.imgurl,
+      urls: this.data.imgArr3.map(x => x.data)
     });
   },
 
@@ -192,9 +188,9 @@ Page({
         console.log(res);
         console.log(res.data);
         if (res.statusCode == 200) {
-          // wx.redirectTo({
-          //   url: "../mr/index"
-          // });
+          wx.redirectTo({
+            url: "../mr/index"
+          });
         }
       }
     });

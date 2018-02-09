@@ -7,10 +7,7 @@ var app = getApp()
 Page({
   data: {
     userInfo: {},
-    logged: false,
-    takeSession: false,
-    requestResult: "",
-    imgArr: []
+    logged: false
   },
   onLoad: function() {
     this.setData({
@@ -20,28 +17,18 @@ Page({
   },
   onShow: function() {
     console.log(app.globalData);
-    this.setData({
-      userInfo: app.globalData.userInfo,
-      logged: app.globalData.logged
-    });
   },
 
   onReady: function() {
-    // app.login()
     console.log(app.globalData);
   },
   // 用户登录示例
   login: function() {
     var that = this;
-
-    if (this.data.logged) {
-      return;
-    }
-    console.log(app.globalData.userId);
-
-    if (!app.globalData.userId) {
-      app.unionIdForUserId();
-    }
+    // if (this.data.logged) {
+    //   return;
+    // }
+    // console.log(app.globalData.userId);
 
     util.showBusy("正在登录");
 
@@ -49,7 +36,7 @@ Page({
     qcloud.login({
       success(result) {
         if (result) {
-          util.showSuccess("登录成功");
+          util.showSuccess("登录成功1");
           that.setData({ userInfo: result, logged: true });
           app.globalData.userInfo = result;
           app.globalData.logged = true;
@@ -59,7 +46,7 @@ Page({
             url: config.service.requestUrl,
             login: true,
             success(result) {
-              util.showSuccess("登录成功");
+              util.showSuccess("登录成功2");
               that.setData({
                 userInfo: result.data.data,
                 logged: true
@@ -80,5 +67,10 @@ Page({
         console.log("登录失败", error);
       }
     });
+
+    if (app.globalData.userId == undefined) {
+      app.unionIdForUserId();
+    }
+
   }
 });

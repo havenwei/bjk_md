@@ -8,15 +8,15 @@ const CONF = {
   tunnelSignatureKey: "",
 
   // 对象存储云API密钥
-  qcloudAppId: 1255892295,
-  qcloudSecretId: "AKIDueASVK9IRL2VkkS2LPFrEMFuMZYRRUdW",
-  qcloudSecretKey: "oOjsmSs2yfEZibEbiaCYeU3MPDl23g4C",
+  qcloudAppId: 1256055848,
+  qcloudSecretId: "AKIDjOtDVcrJ5gBkEXMbhghdkhTjz49JuaZU",
+  qcloudSecretKey: "3l3EF5mJZTFtSq3JuQmygDanHh1BC2nN",
 
   // 微信小程序 App ID
-  appId: "wx3d77b65e4978ca04",
+  appId: "wx218800b558d61f52",
 
   // 微信小程序 App Secret
-  appSecret: "955f42453ad5b1c7f4ace0b4cc10b08c",
+  appSecret: "37530899a42eb9ab0db105eccdfbb2ad",
 
   // 是否使用腾讯云代理登录小程序
   useQcloudLogin: false,
@@ -31,7 +31,7 @@ const CONF = {
     port: 3306,
     user: "root",
     db: "cAuth",
-    pass: "1qaz2wsx./",
+    pass: "S8uBd6bV",
     char: "utf8mb4"
   },
 
@@ -42,7 +42,7 @@ const CONF = {
      */
     region: "ap-guangzhou",
     // Bucket 名称
-    fileBucket: "qcloudtest",
+    fileBucket: "bjk",
     // 文件夹
     uploadFolder: ""
   },

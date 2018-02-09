@@ -12,8 +12,6 @@
     "license": "MIT",
     "dependencies": {
         "axios": "^0.15.3",
-        "graphile-build": "^0.1.0-alpha.38",
-        "graphql": "^0.12.3",
         "graphql.js": "^0.4.20",
         "knex": "^0.13.0",
         "koa": "^2.0.0",
@@ -24,8 +22,6 @@
         "mkdir-p": "0.0.7",
         "mysql": "^2.14.1",
         "pify": "^2.3.0",
-        "postgraphile": "^4.0.0-alpha2.30",
-        "postgrest-client": "^1.1.2",
         "query-string": "^5.0.1",
         "wafer-node-sdk": "^1.1.1"
     },

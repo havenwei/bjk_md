@@ -59,11 +59,11 @@ Page({
       success: function(res) {
         console.log(res);
         console.log(res.statusCode);
-        // if (res.statusCode == 200) {
-        //   wx.redirectTo({
-        //     url: "../mr/index"
-        //   });
-        // }
+        if (res.statusCode == 200) {
+          wx.redirectTo({
+            url: "../mr/index"
+          });
+        }
       }
     });
   },
