@@ -1,6 +1,3 @@
-// const queryString = require("query-string");
-// const graphql = require("graphql")
-// const postgraphql = require('postgraphql').postgraphql
 var graphql = require('graphql.js')
 var graph = graphql("http://wx.baojiankang.cc/graphql")
 
@@ -103,14 +100,8 @@ async function getAll(ctx, next) {
 
 async function post(ctx, next) {
   // const params = queryString.stringify(ctx.request.body);
-  var body = Object.assign(
-    {},
-    ctx.request.body.formData,
-    ctx.request.body.medical_record_images_attributes
-  );
-  console.log(body)
   const data = await graph(createMR, {
-    medical_record: body
+    medical_record: ctx.request.body
   });
   console.log(data);
   ctx.state.data = { data: data };

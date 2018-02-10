@@ -32,7 +32,7 @@
 					<input type='number' style="display:none" name="height" value="{{info.heights[hSelectedIndex]}}"/>
 					<view>{{info.heights[hSelectedIndex]}}</view>
 				</picker> -->
-				<input class="weui-input" type="number" name="height" placeholder="请输入身高"/>
+				<input class="weui-input" type="number" name="height" value="{{info.height}}" placeholder="请输入身高"/>
 			</view>
 		</view>
 
@@ -45,7 +45,7 @@
 						{{info.weights[wSelectedIndex]}}
 					</view>
 				</picker> -->
-				<input class="weui-input" type="number" name="weight" placeholder="请输入体重"/>
+				<input class="weui-input" type="number" name="weight" value="{{info.weight}}"  placeholder="请输入体重"/>
 			</view>
 		</view>
 
