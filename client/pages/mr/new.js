@@ -85,31 +85,33 @@ Page({
 
     // 选择图片
     wx.chooseImage({
-      count: 1,
+      count: 5,
       sizeType: ["compressed"],
       sourceType: ["album", "camera"],
       success: function(res) {
-        util.showBusy("正在上传");
-        var filePath = res.tempFilePaths[0];
+        console.log(res);
+        var filePaths = res.tempFilePaths;
 
-        // 上传图片
-        wx.uploadFile({
-          url: config.service.uploadUrl,
-          filePath: filePath,
-          name: "file",
-
-          success: function(res) {
-            util.showSuccess("上传图片成功");
-            console.log(res);
-            res = JSON.parse(res.data);
-            console.log(res);
-            callback(res);
-          },
-
-          fail: function(e) {
-            util.showModel("上传图片失败");
-          }
-        });
+        for (var i = 0; i < filePaths.length; i++){
+          // util.showBusy("正在上传");
+          var filePath = filePaths[i];
+          // 上传图片
+          wx.uploadFile({
+            url: config.service.uploadUrl,
+            filePath: filePath,
+            name: "file",
+            success: function (res) {
+              util.showSuccess("上传图片成功");
+              console.log(res);
+              res = JSON.parse(res.data);
+              console.log(res);
+              callback(res);
+            },
+            fail: function (e) {
+              util.showModel("上传图片失败");
+            }
+          });
+        }
       },
       fail: function(e) {
         console.error(e);
