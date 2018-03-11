@@ -38,7 +38,7 @@ Page({
       oxygen_saturation: 0,
       pain_score: 0,
       date: "2016-09-01",
-      time: "12:01"
+      time: "00:00"
     }
   },
   onLoad: function() {
