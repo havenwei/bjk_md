@@ -88,34 +88,46 @@ async function getOne(ctx, next) {
 }
 
 async function getAll(ctx, next) {
-  console.log("this is server .....");
-  // console.log(ctx.params)
-  // console.log(ctx.query)
-  const user_id = parseInt(ctx.query.user_id);
-  console.log(user_id);
-  const data = await graph(allMedicalRecordsByUserId, { id: user_id });
-  console.log(data);
-  ctx.state.data = { medical_records: data.allMedicalRecordsByUserId };
+  try {
+      console.log("this is server .....");
+      // console.log(ctx.params)
+      // console.log(ctx.query)
+      const user_id = parseInt(ctx.query.user_id);
+      console.log(user_id);
+      const data = await graph(allMedicalRecordsByUserId, { id: user_id });
+      console.log(data);
+      ctx.state.data = { medical_records: data.allMedicalRecordsByUserId };
+  }catch (error){
+    console.log(error)
+  }
 }
 
 async function post(ctx, next) {
-  // const params = queryString.stringify(ctx.request.body);
-  const data = await graph(createMR, {
-    medical_record: ctx.request.body
-  });
-  console.log(data);
-  ctx.state.data = { data: data };
+  try {
+      // const params = queryString.stringify(ctx.request.body);
+      const data = await graph(createMR, {
+        medical_record: ctx.request.body
+      });
+      console.log(data);
+      ctx.state.data = { data: data };
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // curl -X PATCH -d name=val2 http://babycare.yhuan.cc/fa_medical_record?id=eq.1
 async function update(ctx, next) {
-  // const data = await Api.patch(`/fa_medical_record?id=eq.${id}`);
-  console.log(ctx.request.body);
-  const data = await graph(updateMR, {
-    medical_record: ctx.request.body
-  });
-  console.log(data);
-  ctx.state.data = { status: "OK" };
+  try {
+    // const data = await Api.patch(`/fa_medical_record?id=eq.${id}`);
+    console.log(ctx.request.body);
+    const data = await graph(updateMR, {
+      medical_record: ctx.request.body
+    });
+    console.log(data);
+    ctx.state.data = { status: "OK" };
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 async function destroy(ctx, next) {
@@ -124,14 +136,17 @@ async function destroy(ctx, next) {
 }
 
 async function exchangeUnionIdForUserId(ctx, next) {
-  console.log('server ......')
-  // console.log(ctx)
-  console.log(ctx.params.unionId)
-  // console.log(ctx.query)
-  var unionId = ctx.params.unionId;
-  const data = await graph(unionIdForUserId, { id: unionId });
-  console.log(data);
-  ctx.state.data = { userId: data.unionIdForUserId };
+  try {
+    // console.log(ctx)
+    console.log(ctx.params.unionId)
+    // console.log(ctx.query)
+    var unionId = ctx.params.unionId;
+    const data = await graph(unionIdForUserId, { id: unionId });
+    console.log(data);
+    ctx.state.data = { userId: data.unionIdForUserId };
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 module.exports = {
