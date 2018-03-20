@@ -120,7 +120,7 @@
 		<view class="weui-flex">
 			<view class="label">收缩压(mmHg)</view>
 			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeSystolicPressure' min="80" max="190" show-value value="{{info.systolic_pressure}}"/>
+				<slider bindchange='bindSliderChangeSystolicPressure' min="80" max="250" show-value value="{{info.systolic_pressure}}"/>
 				<input name="systolic_pressure" value="{{info.systolic_pressure}}" style="display:none"/>
 			</view>
 		</view>
