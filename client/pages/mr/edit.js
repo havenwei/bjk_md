@@ -11,6 +11,9 @@ Page({
     imgArr1: [],
     imgArr2: [],
     imgArr3: [],
+    temperatures: util.xah_range(35, 42, 0.1),
+    heights: util.xah_range(10, 240, 1),
+    weights: util.xah_range(1, 200, 1),
     info: {
     }
   },
@@ -97,46 +100,48 @@ Page({
     this.uploadAndAppend(function(res) {
       that.data.imgArr3.push({
         data: res.data.imgUrl,
-        category: "检查"
+        category: "诊断"
       });
       that.setData({ imgArr3: that.data.imgArr3 });
     });
   },
 
   //上传图片
-  uploadAndAppend: function(callback) {
+  uploadAndAppend: function (callback) {
     var that = this;
     console.log(that.data);
 
     // 选择图片
     wx.chooseImage({
-      count: 1,
+      count: 5,
       sizeType: ["compressed"],
       sourceType: ["album", "camera"],
-      success: function(res) {
-        util.showBusy("正在上传");
-        var filePath = res.tempFilePaths[0];
+      success: function (res) {
+        console.log(res);
+        var filePaths = res.tempFilePaths;
 
-        // 上传图片
-        wx.uploadFile({
-          url: config.service.uploadUrl,
-          filePath: filePath,
-          name: "file",
-
-          success: function(res) {
-            util.showSuccess("上传图片成功");
-            console.log(res);
-            res = JSON.parse(res.data);
-            console.log(res);
-            callback(res);
-          },
-
-          fail: function(e) {
-            util.showModel("上传图片失败");
-          }
-        });
+        for (var i = 0; i < filePaths.length; i++) {
+          // util.showBusy("正在上传");
+          var filePath = filePaths[i];
+          // 上传图片
+          wx.uploadFile({
+            url: config.service.uploadUrl,
+            filePath: filePath,
+            name: "file",
+            success: function (res) {
+              util.showSuccess("上传图片成功");
+              console.log(res);
+              res = JSON.parse(res.data);
+              console.log(res);
+              callback(res);
+            },
+            fail: function (e) {
+              util.showModel("上传图片失败");
+            }
+          });
+        }
       },
-      fail: function(e) {
+      fail: function (e) {
         console.error(e);
       }
     });
@@ -186,11 +191,31 @@ Page({
   onUnload: function() {
     // 页面关闭
   },
+  bindPickerChangeHeight: function (e) {
+    console.log(e.detail.value)
+    var index = e.detail.value
+    this.setData({
+      "info.height": this.data.heights[index]
+    });
+    console.log(this.data);
+  },
+  bindPickerChangeWeight: function (e) {
+    console.log(e.detail.value)
+    var index = e.detail.value
+    this.setData({
+      "info.weight": this.data.weights[index]
+    });
+    console.log(this.data);
+  },
+  bindPickerChangeTemperature: function (e) {
+    console.log(e.detail.value);
+    var index = e.detail.value
+    this.setData({
+      "info.temperature": this.data.temperatures[index]
+    });
+  },
   bindSliderChangeBMI: function(e) {
     this.setData({ "info.bmi": e.detail.value });
-  },
-  bindSliderChangeTemperature: function(e) {
-    this.setData({ "info.temperature": e.detail.value });
   },
   bindSliderChangePulse: function(e) {
     this.setData({ "info.pulse": e.detail.value });

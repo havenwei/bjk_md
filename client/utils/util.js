@@ -21,6 +21,12 @@ var showBusy = text => wx.showToast({
     duration: 10000
 })
 
+var showLoading = text => wx.showToast({
+  title: text,
+  icon: 'loading',
+  duration: 2000
+})
+
 // 显示成功提示
 var showSuccess = text => wx.showToast({
     title: text,
@@ -49,4 +55,16 @@ const params = (obj) => {
   return str;
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel, params }
+const xah_range = ((min, max, step = 1) => {
+  // return a array from min to max, inclusive, in steps of step.
+  // if step is not integer, then max may not be included
+  // http://xahlee.info/js/javascript_range_array.html
+  // version 2017-04-20
+  const arr = [];
+  const totalSteps = Math.floor((max - min) / step);
+  for (let ii = 0; ii <= totalSteps; ii++) { arr.push(ii * step + min) }
+  return arr;
+});
+
+
+module.exports = { formatTime, showBusy, showSuccess, showLoading, showModel, params, xah_range }

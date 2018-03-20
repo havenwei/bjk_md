@@ -102,3 +102,8 @@ wx-image.uploader-image {
   width: 77px;
   height: 77px;
 }
+
+.weui-flex picker {
+  width: 100%;
+  text-align: center;
+}

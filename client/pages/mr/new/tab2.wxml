@@ -94,11 +94,13 @@
 		</view>
 
 		<view class="weui-flex">
-			<view class="label">体温</view>
-			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeTemperature' min="22" max="43" show-value value="{{info.temperature}}"/>
-				<input name="temperature" value="{{info.temperature}}" style="display:none"/>
-			</view>
+			<view class="label">体温(℃)</view>
+			<picker bindchange="bindPickerChangeTemperature" value="{{index}}" range="{{temperatures}}">
+				<view class="picker">
+					{{info.temperature}}
+				</view>
+				<input class="weui-input" type="number" value="{{info.temperature}}" name="temperature" style="display:none"/>				
+			</picker>
 		</view>
 
 		<view class="weui-flex">

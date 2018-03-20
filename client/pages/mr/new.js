@@ -17,20 +17,22 @@ Page({
     imgArr2: [],
     imgArr3: [],
     medical_record_images_attributes: [],
+    
+    temperatures: util.xah_range(35, 42, 0.1),
+    heights: util.xah_range(10, 240, 1),
+    weights: util.xah_range(1, 200, 1),
+    bmis: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    respiratory_rates: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    blood_pressures: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    oxygen_saturations: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    pain_scores: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     info: {
-      heights: [15, 50, 51, 52, 53, 54, 55, 56, 57],
-      weights: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      bmis: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      temperatures: [38, 39, 40, 41, 42],
-      respiratory_rates: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      blood_pressures: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      oxygen_saturations: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      pain_scores: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      identity_card: "",
       index: 0,
-      hSelectedIndex: 0,
-      wSelectedIndex: 0,
       bmi: 0,
       temperature: 0,
+      weight: 10,
+      height: 1,
       pulse: 0,
       respiratory_rate: 0,
       systolic_pressure: 0,
@@ -73,7 +75,7 @@ Page({
   doUpload3: function() {
     var that = this;
     this.uploadAndAppend(function(res) {
-      that.data.imgArr3.push({ data: res.data.imgUrl, category: "检查" });
+      that.data.imgArr3.push({ data: res.data.imgUrl, category: "诊断" });
       that.setData({ imgArr3: that.data.imgArr3 });
     });
   },
@@ -163,6 +165,14 @@ Page({
   onUnload: function() {
   },
   formSubmit: function(e) {
+    
+    var regex = /^\d{17}x|\d{18}$/i
+    var identity_card = this.data.info.identity_card
+    if (!(identity_card.length == 18 && regex.test(identity_card))) {
+      util.showModel("身份证号码格式错误", "身份证号码格式错误")
+      return false
+    }
+
     var that = this;
     // var formData = util.params(e.detail.value);
     var formData = e.detail.value;
@@ -200,77 +210,19 @@ Page({
   formReset: function() {
     console.log("form发生了reset事件");
   },
-  radioChange: function(e) {
-    console.log("radio发生change事件，携带value值为：", e.detail.value);
-
-    var radioItems = this.data.radioItems;
-    for (var i = 0, len = radioItems.length; i < len; ++i) {
-      radioItems[i].checked = radioItems[i].value == e.detail.value;
-    }
-
+  bindPickerChangeHeight: function(e) {
+    console.log(e.detail.value)
+    var index = e.detail.value
     this.setData({
-      radioItems: radioItems
-    });
-  },
-  checkboxChange: function(e) {
-    console.log("checkbox发生change事件，携带value值为：", e.detail.value);
-
-    var checkboxItems = this.data.checkboxItems,
-      values = e.detail.value;
-    for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
-      checkboxItems[i].checked = false;
-
-      for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-        if (checkboxItems[i].value == values[j]) {
-          checkboxItems[i].checked = true;
-          break;
-        }
-      }
-    }
-    this.setData({
-      checkboxItems: checkboxItems
-    });
-  },
-  bindDateChange: function(e) {
-    this.setData({
-      date: e.detail.value
-    });
-  },
-  bindTimeChange: function(e) {
-    this.setData({
-      time: e.detail.value
-    });
-  },
-  bindCountryCodeChange: function(e) {
-    this.setData({
-      countryCodeIndex: e.detail.value
-    });
-  },
-  bindCountryChange: function(e) {
-    this.setData({
-      countryIndex: e.detail.value
-    });
-  },
-  bindAccountChange: function(e) {
-    console.log("picker account 发生选择改变，携带值为", e.detail.value);
-    this.setData({
-      accountIndex: e.detail.value
-    });
-  },
-  bindAgreeChange: function(e) {
-    this.setData({
-      isAgree: !!e.detail.value.length
-    });
-  },
-  bindPickerHChange: function(e) {
-    this.setData({
-      hSelectedIndex: e.detail.value
+      "info.height": this.data.heights[index]
     });
     console.log(this.data);
   },
-  bindPickerWChange: function(e) {
+  bindPickerChangeWeight: function(e) {
+    console.log(e.detail.value)
+    var index = e.detail.value    
     this.setData({
-      wSelectedIndex: e.detail.value
+      "info.weight": this.data.weights[index]
     });
     console.log(this.data);
   },
@@ -293,46 +245,57 @@ Page({
       urls: this.data.files // 需要预览的图片http链接列表
     });
   },
+  validateIdentityCard: function(e){
+    var str = e.detail.value;
+    // var str = "42112419871228003111"
+    var regex = /^\d{17}x|\d{18}$/i
+    if (!(str.length == 18 && regex.test(str))){
+      util.showModel("身份证号码格式错误", "身份证号码格式错误")
+    }
+  },
+
   bindSliderChangeBMI: function(e) {
     console.log(e.detail.value);
-
+    var index = e.detail.value   
     this.setData({
-      bmi: e.detail.value
+      "info.bmi": e.detail.value
     });
   },
-  bindSliderChangeTemperature: function(e) {
+  bindPickerChangeTemperature: function(e) {
+    console.log(e.detail.value);
+    var index = e.detail.value 
     this.setData({
-      temperature: e.detail.value
+      "info.temperature": this.data.temperatures[index]
     });
   },
   bindSliderChangePulse: function(e) {
     this.setData({
-      pulse: e.detail.value
+      "info.pulse": e.detail.value
     });
   },
   bindSliderChangeRespiratoryRate: function(e) {
     this.setData({
-      respiratory_rate: e.detail.value
+      "info.respiratory_rate": e.detail.value
     });
   },
   bindSliderChangeSystolicPressure: function(e) {
     this.setData({
-      systolic_pressure: e.detail.value
+      "info.systolic_pressure": e.detail.value
     });
   },
   bindSliderChangeDiastolicPressure: function(e) {
     this.setData({
-      diastolic_pressure: e.detail.value
+      "info.diastolic_pressure": e.detail.value
     });
   },
   bindSliderChangeOxygenSaturation: function(e) {
     this.setData({
-      oxygen_saturation: e.detail.value
+      "info.oxygen_saturation": e.detail.value
     });
   },
   bindSliderChangePainScore: function(e) {
     this.setData({
-      pain_score: e.detail.value
+      "info.pain_score": e.detail.value
     });
   }
 });

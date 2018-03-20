@@ -40,3 +40,8 @@
   width: 25%;
   font-size: 15px;
 }
+
+wx-image.uploader-image {
+  width: 77px;
+  height: 77px;
+}

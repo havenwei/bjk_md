@@ -17,10 +17,10 @@
 				</view>
 				<view class="weui-tab__panel">
 					<view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-						<template is="tab1" data="{{hSelectedIndex,wSelectedIndex,date,time,heights,weights,info,imgArr1}}"/>
+						<template is="tab1" data="{{date,time,heights,weights,info,imgArr1}}"/>
 					</view>
 					<view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-						<template is="tab2" data="{{info,imgArr2}}"/>
+						<template is="tab2" data="{{temperatures,info,imgArr2}}"/>
 					</view>
 					<view class="weui-tab__content" hidden="{{activeIndex != 2}}">
 						<template is="tab3" data="{{info,imgArr3}}"/>

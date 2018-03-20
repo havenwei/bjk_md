@@ -10,7 +10,7 @@
 		<view class="weui-flex">
 			<view class="label">身份证</view>
 			<view class="weui-flex__item__show">
-				<input class="weui-input" name="identity_card" placeholder="请输入身份证"/>
+				<input class="weui-input" name="identity_card" value="{{info.identity_card}}" bindblur="validateIdentityCard" placeholder="请输入身份证"/>
 			</view>
 		</view>
 
@@ -18,36 +18,32 @@
 			<view class="label">性别</view>
 			<view class="weui-flex__item__show">
 				<radio-group name="gender">
-					<label><radio value="男"/>男</label>
-					<label><radio value="女"/>女</label>
+					<label><radio value="男" />男</label>
+					<label><radio value="女" />女</label>
 				</radio-group>
 			</view>
 		</view>
 
 		<view class="weui-flex">
 			<view class="label">身高(cm)</view>
-			<view class="weui-flex__item__show">
-				<!-- <picker mode="selector" bindchange="bindPickerHChange" value="{{info.hSelectedIndex}}" range="{{info.heights}}">
-					<input type='number' style="display:none" name="height" value="{{info.heights[hSelectedIndex]}}"/>
-					<view>{{info.heights[hSelectedIndex]}}</view>
-				</picker> -->
-				<input class="weui-input" type="number" name="height" placeholder="请输入身高"/>
-			</view>
+			<picker bindchange="bindPickerChangeHeight" value="{{index}}" range="{{heights}}">
+				<view class="picker">
+				{{info.height}}
+				</view>
+				<input class="weui-input" type="number" value="{{info.height}}" name="height" style="display:none"/>				
+			</picker>
 		</view>
 
 		<view class="weui-flex">
 			<view class="label">体重(kg)</view>
-			<view class="weui-flex__item__show">
-				<!-- <picker mode="selector" bindchange="bindPickerWChange" value="{{info.wSelectedIndex}}" range="{{info.weights}}">
-					<view class="picker">
-						<input type='number' style="display:none" name="weight" value="{{info.weights[wSelectedIndex]}}"/>
-						{{info.weights[wSelectedIndex]}}
-					</view>
-				</picker> -->
-				<input class="weui-input" type="number" name="weight" placeholder="请输入体重"/>
-			</view>
+			<picker bindchange="bindPickerChangeWeight" value="{{index}}" range="{{weights}}">
+				<view class="picker">
+				{{info.weight}}
+				</view>
+				<input class="weui-input" type="number" value="{{info.weight}}" name="weight" style="display:none"/>				
+			</picker>
 		</view>
-
+	
 		<view class="weui-cells__title">主诉</view>
 		<view class="weui-cells weui-cells_after-title">
 			<view class="weui-cell">

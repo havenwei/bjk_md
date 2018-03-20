@@ -9,6 +9,16 @@ Page({
     medical_records: null
   },
   onLoad: function(options){
+    console.log(this.data.medical_records)
+    console.log(this.data.medical_records == null)
+    if (getApp().globalData.userId == undefined){
+      util.showModel("请先登录", "请先授权登陆!");
+    }
+    
+    if (wx.getStorageSync('userId') == "") {
+      util.showLoading("加载中......");
+    }
+
     var that = this;
     wx.request({
       url: `${config.service.host}/weapp/medical_records?user_id=${wx.getStorageSync('userId')}`,
@@ -21,6 +31,7 @@ Page({
         var medical_records = res.data.data.medical_records || [];
         console.log(medical_records);
         if (medical_records.length > 0) {
+          util.showSuccess("加载成功! ");
           medical_records.map((element, index) => {
             element.created_at = util.formatTime(
               new Date(element.created_at)
