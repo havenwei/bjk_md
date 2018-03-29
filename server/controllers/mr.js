@@ -77,9 +77,7 @@ var updateMR = `mutation updateMedicalRecord($medical_record: MedicalRecordInput
                   }
                 }`;
 
-var unionIdForUserId = `query unionIdForUserId($id: String!){
-                            unionIdForUserId(id: $id)
-                        }`;
+                
 
 async function getOne(ctx, next) {
   const id = parseInt(ctx.params.id);
@@ -135,22 +133,7 @@ async function destroy(ctx, next) {
   // ctx.state.data = { medical_records: data };
 }
 
-async function exchangeUnionIdForUserId(ctx, next) {
-  try {
-    // console.log(ctx)
-    console.log(ctx.params.unionId)
-    // console.log(ctx.query)
-    var unionId = ctx.params.unionId;
-    const data = await graph(unionIdForUserId, { id: unionId });
-    console.log(data);
-    ctx.state.data = { userId: data.unionIdForUserId };
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 module.exports = {
-  exchangeUnionIdForUserId,
   post,
   getOne,
   getAll,

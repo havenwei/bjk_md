@@ -7,70 +7,71 @@ var app = getApp()
 Page({
   data: {
     userInfo: {},
-    logged: false
-  },
-  onLoad: function() {
-    this.setData({
-      userInfo: app.globalData.userInfo,
-      logged: app.globalData.logged
-    });
-  },
-  onShow: function() {
-    console.log(app.globalData);
-  },
-
-  onReady: function() {
-    console.log(app.globalData);
+    logged: false,
+    avatarBtn: "./user-unlogin.png",
+    nickNameBtn: "登录"
   },
   // 用户登录示例
   login: function() {
     var that = this;
-    // if (this.data.logged) {
-    //   return;
-    // }
-    // console.log(app.globalData.userId);
+    app.login();
 
-    util.showBusy("正在登录");
-
-    // 调用登录接口
-    qcloud.login({
-      success(result) {
-        if (result) {
-          util.showSuccess("登录成功1");
-          that.setData({ userInfo: result, logged: true });
-          app.globalData.userInfo = result;
-          app.globalData.logged = true;
-        } else {
-          // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
-          qcloud.request({
-            url: config.service.requestUrl,
-            login: true,
-            success(result) {
-              util.showSuccess("登录成功2");
-              that.setData({
-                userInfo: result.data.data,
-                logged: true
-              });
-              app.globalData.userInfo = result.data.data;
-              app.globalData.logged = true;
-            },
-            fail(error) {
-              util.showModel("请求失败", error);
-              console.log("request fail", error);
-            }
-          });
-        }
-      },
-
-      fail(error) {
-        util.showModel("登录失败", error);
-        console.log("登录失败", error);
+    wx.getStorage({
+      key: 'logged',
+      success: function (res) {
+        that.setData({ logged: res.data });
       }
     });
 
-    if (app.globalData.userId == undefined) {
-      app.unionIdForUserId();
-    }
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (res) {
+        console.log(that.data)
+        that.setData({ userInfo: res.data });
+        that.setData({
+          "avatarBtn": that.data.userInfo.avatarUrl,
+          "nickNameBtn": that.data.userInfo.nickName
+        })
+      }
+    });
 
+    console.log("wx.getStorageSync('userId') ", wx.getStorageSync('userId'))
+  },
+
+  onLoad: function () {
+    var that = this
+    wx.getStorage({
+      key: 'logged',
+      success: function (res) {
+        that.setData({ logged: res.data });
+      }
+    });
+
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (res) {
+        console.log(that.data)
+        that.setData({ userInfo: res.data });
+        that.setData({
+          "avatarBtn": that.data.userInfo.avatarUrl,
+          "nickNameBtn": that.data.userInfo.nickName
+        })
+      }
+    });
+
+  },
+  onShow: function () {
+    // var that = this
+    // console.log("on Show wx.getStorageSync('userId') ", wx.getStorageSync('userId'))
+    // console.log(app.globalData);
+    console.log(wx.getStorageSync("userInfo"))
+  },
+
+  onReady: function () {
+    console.log(wx.getStorageSync('unionId'))
+    console.log(wx.getStorageSync('userId'))
+    console.log(wx.getStorageSync('userInfo'))
+    // console.log("on Ready wx.getStorageSync('userId') ", wx.getStorageSync('userId'))
+    // console.log(app.globalData);
   }
 });

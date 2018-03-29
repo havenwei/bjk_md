@@ -16,79 +16,101 @@ App({
 
 	// 用户登录示例
 	login: function() {
-    // console.log(this.globalData.logged);
-    // console.log(this.globalData.userInfo);
-		// if (this.globalData.logged && this.globalData.userInfo) return
-
 		util.showBusy('正在登录')
 		var that = this
 
-    // 调用登录接口
-    qcloud.login({
+    that.getUserInfo();
+  },
+  
+  getUserInfo: function() {
+    var that = this;
+    qcloud.request({
+      url: config.service.requestUrl,
+      login: true,
       success(result) {
-        if (result) {
-          util.showSuccess("登录成功1");
-          console.log(result);
-          that.globalData.userInfo = result;
-          that.globalData.logged = true;
-          that.unionIdForUserId();
-        } else {
-          // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
-          qcloud.request({
-            url: config.service.requestUrl,
-            login: true,
-            success(result) {
-              util.showSuccess("登录成功2");
-              that.globalData.userInfo = result.data.data;
-              that.globalData.logged = true;
-              that.unionIdForUserId();
-            },
-            fail(error) {
-              util.showModel("请求失败", error);
-              console.log("request fail", error);
-            }
-          });
-        }
-      },
+        console.log("登录成功2\n", result);
+        wx.setStorage({
+          key: 'logged',
+          data: true,
+          success: function (res) {
+            that.globalData.logged = true;
+          }
+        });
 
+        wx.setStorage({
+          key: 'userInfo',
+          data: result.data.data,
+          success: function (res) {
+            that.globalData.userInfo = result.data.data;
+            wx.setStorageSync("unionId", that.globalData.userInfo.unionId)
+            that.unionIdForUserId();            
+          }
+        });
+
+      },
       fail(error) {
-        util.showModel("登录失败", error);
-        console.log("登录失败", error);
+        util.showModel("请求失败", error);
+        console.log("request fail", error);
       }
     });
-	},
+  },
+
   unionIdForUserId: function() {
     console.log("unionIdForUserId .....");
     var that = this;
-    // console.log(that.globalData.userInfo);
-    // console.log(that.globalData);
-
-    var unionId = undefined;
-    if(that.globalData.userInfo){
-      unionId = that.globalData.userInfo.unionId;
-    };
-
-    if(unionId !== undefined && that.globalData.userId == undefined){
-      wx.request({
-        url: `${config.service.host}/weapp/exchangeUnionIdForUserId/${unionId}`,
-        success(result) {
-          util.showSuccess("获取用户Id成功");
-          console.log(result);
-          console.log("xxxxx");
-          console.log(result.data);
-          console.log(result.data.data.userId);
-          wx.setStorageSync("userId", result.data.data.userId);
-          that.globalData.userId = wx.getStorageSync("userId");
-        },
-        fail(error) {
-          util.showModel("请求失败", error);
-          console.log("request fail", error);
-        }
-      });
-    }
+    wx.getStorage({
+      key: 'unionId',
+      success: function (res) {
+        // console.log(res.data)
+        var unionId = res.data
+        wx.request({
+          login: true,
+          url: `${config.service.host}/weapp/exchangeUnionIdForUserId/${unionId}`,
+          success(result) {
+            util.showSuccess("获取用户Id成功");
+            console.log("get unionId from storage");
+            console.log(result);
+            console.log(result.data.data.userId)
+            var userInfo = wx.getStorageSync("userInfo")
+            var dataToSubmit = {
+              "nickName": userInfo.nickName,
+              "gender": userInfo.gender.to_s,
+              "openId": userInfo.openId,
+              "avatarUrl": userInfo.avatarUrl,
+              "unionId": userInfo.unionId
+            }
+            if (result.data.data.userId == ""){
+              // 数据库中不存在此微信账号认证的账号，所以获取的userId是空的，需要创建
+              wx.request({
+                url: `${config.service.host}/weapp/createUserFromWxApp`,
+                method: "POST",
+                data: dataToSubmit,
+                success: function (res) {
+                  console.log("post to createUserFromWxApp")
+                  console.log(res);
+                  console.log(res.data);
+                }
+              });
+            }else{
+              wx.setStorageSync("userId", result.data.data.userId);
+              that.globalData.userId = wx.getStorageSync("userId");
+            }
+          },
+          fail(error) {
+            util.showModel("请求失败", error);
+            console.log("request fail", error);
+          }
+        });
+      }
+    })
   },
-	onLaunch: function() {
+  
+  onLaunch: function() {
 		qcloud.setLoginUrl(config.service.loginUrl)
     this.login()
-	}
+  },
+  
+  onShow: function() {
+    
+  }
 })

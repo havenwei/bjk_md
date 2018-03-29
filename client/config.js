@@ -12,7 +12,7 @@ var config = {
     host,
     // dbHost: 'http://192.168.31.127',
 
-    localhost: "http://localhost:8000",
+    localhost: "http://localhost:5757",
 
     // 登录地址，用于建立会话
     loginUrl: `${host}/weapp/login`,

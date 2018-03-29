@@ -8,6 +8,7 @@ Page({
   data:{
     medical_records: null
   },
+
   onLoad: function(options){
     console.log(this.data.medical_records)
     console.log(this.data.medical_records == null)
@@ -45,13 +46,21 @@ Page({
     });
   },
 
+  onShow: function () {
+    console.log("on Show wx.getStorageSync('userId') ", wx.getStorageSync('userId'))
+  },
+
   onReady:function(){
+    console.log("on Ready wx.getStorageSync('userId') ", wx.getStorageSync('userId'))
     console.log(app.globalData);
+      console.log(wx.getStorageSync('unionId'))
+      console.log(wx.getStorageSync('userId'))
+      console.log(wx.getStorageSync('userInfo'))
   },
-  onShow:function(){
-  },
+ 
   onHide:function(){
   },
+
   onUnload:function(){
   }
 })

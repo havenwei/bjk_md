@@ -155,7 +155,7 @@
 		<view class="weui-cells">
 			<view class="weui-cell">
 				<ul class="weui-uploader__files">
-					<li class="weui-uploader__file" wx:for="{{imgArr2}}" wx:key="*this">
+					<li class="weui-uploader__file" wx:for="{{imgArr2}}" wx:key="{{index}}">
 						<image
 							class="uploader-image"
 							src="{{item.data}}"
@@ -170,7 +170,7 @@
 		</view>
 
 		<view class="weui-btn-area">
-			<button formType="submit" class="weui-btn" type="primary">确定</button>
+			<button formType="submit" class="weui-btn" type="Primary">确定</button>
 		</view>
 	</scroll-view>
 </template>

@@ -17,7 +17,6 @@ Page({
     imgArr2: [],
     imgArr3: [],
     medical_record_images_attributes: [],
-    
     temperatures: util.xah_range(35, 42, 0.1),
     heights: util.xah_range(10, 240, 1),
     weights: util.xah_range(1, 200, 1),
@@ -31,8 +30,8 @@ Page({
       index: 0,
       bmi: 0,
       temperature: 0,
-      weight: 10,
-      height: 1,
+      weight: 1,
+      height: 10,
       pulse: 0,
       respiratory_rate: 0,
       systolic_pressure: 0,
@@ -152,28 +151,41 @@ Page({
       activeIndex: e.currentTarget.id
     });
   },
-  onReady: function() {
+  onLoad: function() {
+  },
+  onShow: function() {
+    console.log(wx.getStorageSync("userInfo"))
+  },
+  onReady: function () {
+    console.log("on Ready")
     // 页面渲染完成
     this.setData({
       index: 0
     });
-  },
-  onShow: function() {
+    console.log("wx.getStorageSync('userId') ", wx.getStorageSync('userId'))
   },
   onHide: function() {
   },
   onUnload: function() {
   },
   formSubmit: function(e) {
-    
+    console.log(wx.getStorageSync("userInfo"))
+    console.log(e.detail.value);
+    var that = this;
     var regex = /^\d{17}x|\d{18}$/i
     var identity_card = this.data.info.identity_card
+
+    console.log("identity_card is " + identity_card)
+
     if (!(identity_card.length == 18 && regex.test(identity_card))) {
       util.showModel("身份证号码格式错误", "身份证号码格式错误")
       return false
     }
 
-    var that = this;
+    // return false
+
+    console.log("wx.getStorageSync('userId') is ", wx.getStorageSync('userId'))
+
     // var formData = util.params(e.detail.value);
     var formData = e.detail.value;
     console.log(formData);
@@ -247,13 +259,15 @@ Page({
   },
   validateIdentityCard: function(e){
     var str = e.detail.value;
+    this.setData({
+      "info.identity_card": str
+    });
     // var str = "42112419871228003111"
     var regex = /^\d{17}x|\d{18}$/i
     if (!(str.length == 18 && regex.test(str))){
       util.showModel("身份证号码格式错误", "身份证号码格式错误")
     }
   },
-
   bindSliderChangeBMI: function(e) {
     console.log(e.detail.value);
     var index = e.detail.value   

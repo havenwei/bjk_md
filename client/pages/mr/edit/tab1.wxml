@@ -112,7 +112,7 @@
 		<view class="weui-cells">
 			<view class="weui-cell">
 				<ul class="weui-uploader__files">
-					<li class="weui-uploader__file" wx:for="{{imgArr1}}" wx:key="*this">
+					<li class="weui-uploader__file" wx:for="{{imgArr1}}" wx:key="{{index}}">
 						<image class="uploader-image" src="{{item.data}}" mode="aspectFit" bindtap="previewImg1" ></image>
 					</li>
 					<li class="weui-uploader__input-box" bindtap="doUpload1"></li>
