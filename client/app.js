@@ -61,36 +61,17 @@ App({
     wx.getStorage({
       key: 'unionId',
       success: function (res) {
-        // console.log(res.data)
         var unionId = res.data
         wx.request({
           login: true,
           url: `${config.service.host}/weapp/exchangeUnionIdForUserId/${unionId}`,
           success(result) {
             util.showSuccess("获取用户Id成功");
-            console.log("get unionId from storage");
             console.log(result);
             console.log(result.data.data.userId)
-            var userInfo = wx.getStorageSync("userInfo")
-            var dataToSubmit = {
-              "nickName": userInfo.nickName,
-              "gender": userInfo.gender.to_s,
-              "openId": userInfo.openId,
-              "avatarUrl": userInfo.avatarUrl,
-              "unionId": userInfo.unionId
-            }
             if (result.data.data.userId == ""){
               // 数据库中不存在此微信账号认证的账号，所以获取的userId是空的，需要创建
-              wx.request({
-                url: `${config.service.host}/weapp/createUserFromWxApp`,
-                method: "POST",
-                data: dataToSubmit,
-                success: function (res) {
-                  console.log("post to createUserFromWxApp")
-                  console.log(res);
-                  console.log(res.data);
-                }
-              });
+              that.createUserFromWxApp()
             }else{
               wx.setStorageSync("userId", result.data.data.userId);
               that.globalData.userId = wx.getStorageSync("userId");
@@ -103,6 +84,27 @@ App({
         });
       }
     })
+  },
+
+  createUserFromWxApp: function() {
+    var userInfo = wx.getStorageSync("userInfo")
+    var dataToSubmit = {
+      "nickName": userInfo.nickName,
+      "gender": userInfo.gender.to_s,
+      "openId": userInfo.openId,
+      "avatarUrl": userInfo.avatarUrl,
+      "unionId": userInfo.unionId
+    }
+    wx.request({
+      url: `${config.service.host}/weapp/createUserFromWxApp`,
+      method: "POST",
+      data: dataToSubmit,
+      success: function (res) {
+        console.log("post to createUserFromWxApp")
+        console.log(res);
+        console.log(res.data);
+      }
+    });
   },
   
   onLaunch: function() {
