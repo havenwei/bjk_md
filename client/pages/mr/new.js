@@ -21,8 +21,8 @@ Page({
     heights: util.xah_range(10, 240, 1),
     weights: util.xah_range(1, 200, 1),
     info: {
-      name: "",
-      identity_card: "",
+      name: "ggg",
+      identity_card: "421124198712280031",
       gender: 1,
       chief_complaint: "",
       history_of_present_illness: "",
