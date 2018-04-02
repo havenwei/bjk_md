@@ -53,8 +53,8 @@ Page({
         console.log(that.data)
         that.setData({ userInfo: res.data });
         that.setData({
-          "avatarBtn": that.data.userInfo.avatarUrl,
-          "nickNameBtn": that.data.userInfo.nickName
+          "avatarBtn": res.data.avatarUrl,
+          "nickNameBtn": res.data.nickName
         })
       }
     });

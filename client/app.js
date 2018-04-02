@@ -18,7 +18,6 @@ App({
 	login: function() {
 		util.showBusy('正在登录')
 		var that = this
-
     that.getUserInfo();
   },
   

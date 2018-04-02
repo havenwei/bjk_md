@@ -3,7 +3,7 @@
 <import src="new/tab3.wxml"/>
 
 <!--pages/mr/new.wxml-->
-<form bindsubmit="formSubmit" bindreset="formReset">
+<form bindsubmit="formSubmit" bindreset="formReset" id="medicalRecordForm">
 	<view class="page">
 		<view class="page__bd">
 			<view class="weui-tab">
@@ -17,10 +17,10 @@
 				</view>
 				<view class="weui-tab__panel">
 					<view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-						<template is="tab1" data="{{date,time,heights,weights,info,imgArr1}}"/>
+						<template is="tab1" data="{{info,imgArr1,heights,weights}}"/>
 					</view>
 					<view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-						<template is="tab2" data="{{temperatures,info,imgArr2}}"/>
+						<template is="tab2" data="{{info,temperatures,imgArr2}}"/>
 					</view>
 					<view class="weui-tab__content" hidden="{{activeIndex != 2}}">
 						<template is="tab3" data="{{info,imgArr3}}"/>
@@ -28,5 +28,8 @@
 				</view>
 			</view>
 		</view>
+	</view>
+	<view class="weui-btn-area">
+		<button formType="submit" class="weui-btn" type="Primary">确定</button>
 	</view>
 </form>

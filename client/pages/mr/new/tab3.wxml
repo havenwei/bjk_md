@@ -3,7 +3,7 @@
 	<view class="weui-cells weui-cells_after-title">
 		<view class="weui-cell">
 			<view class="weui-cell__bd">
-				<textarea name="preliminary_diagnosis" class="weui-textarea" placeholder="请输入初步咨询意见" style="height: 3.3em"/>
+				<textarea name="preliminary_diagnosis" class="weui-textarea" value="{{info.preliminary_diagnosis}}" auto-height="true" form="medicalRecordForm"/>
 			</view>
 		</view>
 	</view>
@@ -12,7 +12,7 @@
 	<view class="weui-cells weui-cells_after-title">
 		<view class="weui-cell">
 			<view class="weui-cell__bd">
-				<textarea name="treatment_recommendation" class="weui-textarea" placeholder="请输入治疗意见" style="height: 3.3em"/>
+				<textarea name="treatment_recommendation" class="weui-textarea" value="{{info.treatment_recommendation}}" auto-height="true" form="medicalRecordForm"/>
 			</view>
 		</view>
 	</view>
@@ -21,7 +21,7 @@
 	<view class="weui-cells weui-cells_after-title">
 		<view class="weui-cell">
 			<view class="weui-cell__bd">
-				<textarea name="remarks" class="weui-textarea" placeholder="请输入备注" style="height: 3.3em"/>
+				<textarea name="remarks" class="weui-textarea" value="{{info.remarks}}" auto-height="true" form="medicalRecordForm"/>
 			</view>
 		</view>
 	</view>
@@ -42,10 +42,5 @@
 				<li class="weui-uploader__input-box" bindtap="doUpload3"></li>
 			</ul>
 		</view>
-	</view>
-
-
-	<view class="weui-btn-area">
-		<button formType="submit" class="weui-btn" type="Primary">确定</button>
 	</view>
 </template>

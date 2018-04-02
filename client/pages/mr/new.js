@@ -20,38 +20,34 @@ Page({
     temperatures: util.xah_range(35, 42, 0.1),
     heights: util.xah_range(10, 240, 1),
     weights: util.xah_range(1, 200, 1),
-    bmis: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    respiratory_rates: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    blood_pressures: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    oxygen_saturations: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    pain_scores: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     info: {
+      name: "",
       identity_card: "",
-      index: 0,
+      gender: 1,
+      chief_complaint: "",
+      history_of_present_illness: "",
+      past_medical_history: "",
+      allergic_history: "",
+      personal_history: "",
+      family_history: "",
+      vaccination_history: "",
+      physical_examination: "",
+      laboratory_and_supplementary_examinations: "",
+      imaging_examination: "",
+      preliminary_diagnosis: "",
+      treatment_recommendation: "",
+      remarks: "",
       bmi: 0,
-      temperature: 0,
+      temperature: 38,
       weight: 1,
       height: 10,
-      pulse: 0,
+      pulse: 60,
       respiratory_rate: 0,
       systolic_pressure: 0,
       diastolic_pressure: 0,
       oxygen_saturation: 0,
-      pain_score: 0,
-      date: "2016-09-01",
-      time: "00:00"
+      pain_score: 0
     }
-  },
-  onLoad: function() {
-    var that = this;
-    wx.getSystemInfo({
-      success: function(res) {
-        that.setData({
-          sliderLeft:
-            (res.windowWidth / that.data.tabs.length - sliderWidth) / 2
-        });
-      }
-    });
   },
   // 上传图片接口
   doUpload1: function() {
@@ -87,8 +83,8 @@ Page({
     // 选择图片
     wx.chooseImage({
       count: 5,
-      sizeType: ["compressed"],
-      sourceType: ["album", "camera"],
+      sizeType: ["original", "compressed"], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ["album", "camera"], // 可以指定来源是相册还是相机，默认二者都有
       success: function(res) {
         console.log(res);
         var filePaths = res.tempFilePaths;
@@ -145,17 +141,36 @@ Page({
     });
   },
 
+  radioChange: function(e) {
+    console.log(e.detail.value)
+    this.setData({
+      "info.gender": e.detail.value
+    })
+  },
+  
   tabClick: function(e) {
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
     });
   },
-  onLoad: function() {
+
+  onLoad: function () {
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          sliderLeft:
+            (res.windowWidth / that.data.tabs.length - sliderWidth) / 2
+        });
+      }
+    });
   },
+
   onShow: function() {
     console.log(wx.getStorageSync("userInfo"))
   },
+
   onReady: function () {
     console.log("on Ready")
     // 页面渲染完成
@@ -164,11 +179,20 @@ Page({
     });
     console.log("wx.getStorageSync('userId') ", wx.getStorageSync('userId'))
   },
+
   onHide: function() {
   },
+
   onUnload: function() {
   },
+
   formSubmit: function(e) {
+    var formData = e.detail.value;
+    console.log(formData);
+
+    console.log(this.data.info);
+    return false
+
     console.log(wx.getStorageSync("userInfo"))
     console.log(e.detail.value);
     var that = this;
@@ -237,25 +261,6 @@ Page({
       "info.weight": this.data.weights[index]
     });
     console.log(this.data);
-  },
-  chooseImage: function(e) {
-    var that = this;
-    wx.chooseImage({
-      sizeType: ["original", "compressed"], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ["album", "camera"], // 可以指定来源是相册还是相机，默认二者都有
-      success: function(res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        that.setData({
-          files: that.data.files.concat(res.tempFilePaths)
-        });
-      }
-    });
-  },
-  previewImage: function(e) {
-    wx.previewImage({
-      current: e.currentTarget.id, // 当前显示图片的http链接
-      urls: this.data.files // 需要预览的图片http链接列表
-    });
   },
   validateIdentityCard: function(e){
     var str = e.detail.value;

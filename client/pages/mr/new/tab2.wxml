@@ -1,176 +1,113 @@
 <template name="tab2">
-	<scroll-view>
-		<view class="weui-cells__title">体格检查</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell">
-				<view class="weui-cell__bd">
-					<textarea name="physical_examination" class="weui-textarea" placeholder="" style="height: 3.3em"/>
-				</view>
+	<view class="weui-cells__title">体格检查</view>
+	<view class="weui-cells weui-cells_after-title">
+		<view class="weui-cell">
+			<view class="weui-cell__bd">
+				<textarea name="physical_examination" class="weui-textarea" value="{{info.physical_examination}}" auto-height="true" form="medicalRecordForm"/>
 			</view>
 		</view>
+	</view>
 
-		<view class="weui-cells__title">实验室检查</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell">
-				<view class="weui-cell__bd">
-					<textarea name="laboratory_and_supplementary_examinations" class="weui-textarea" placeholder="" style="height: 3.3em"/>
-				</view>
+	<view class="weui-cells__title">实验室检查</view>
+	<view class="weui-cells weui-cells_after-title">
+		<view class="weui-cell">
+			<view class="weui-cell__bd">
+				<textarea name="laboratory_and_supplementary_examinations" class="weui-textarea" value="{{info.laboratory_and_supplementary_examinations}}" auto-height="true" form="medicalRecordForm"/>
 			</view>
 		</view>
+	</view>
 
-		<!-- <view class="weui-cells__title">实验室检查图片</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell">
-				<view class="weui-cell__bd">
-					<view class="weui-uploader">
-						<view class="weui-uploader__hd">
-							<view class="weui-uploader__title">图片上传</view>
-							<view class="weui-uploader__info">{{files.length}}/2</view>
-						</view>
-						<view class="weui-uploader__bd">
-							<view class="weui-uploader__files" id="uploaderFiles">
-								<block wx:for-items="{{files}}" wx:key="{{index}}">
-									<view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
-										<image class="weui-uploader__img" src="{{item}}" mode="aspectFill"/>
-									</view>
-								</block>
-								<view class="weui-uploader__file">
-									<image class="weui-uploader__img" src="../images/pic_160.png" mode="aspectFill"/>
-								</view>
-							</view>
-							<view class="weui-uploader__input-box">
-								<view class="weui-uploader__input" bindtap="chooseImage"></view>
-							</view>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view> -->
-
-		<view class="weui-cells__title">影像学意见</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell">
-				<view class="weui-cell__bd">
-					<textarea name="imaging_examination" class="weui-textarea" placeholder="" style="height: 3.3em"/>
-				</view>
+	<view class="weui-cells__title">影像学意见</view>
+	<view class="weui-cells weui-cells_after-title">
+		<view class="weui-cell">
+			<view class="weui-cell__bd">
+				<textarea name="imaging_examination" class="weui-textarea" value="{{info.imaging_examination}}" auto-height="true" form="medicalRecordForm"/>
 			</view>
 		</view>
+	</view>
 
-		<!-- <view class="weui-cells__title">影像学意见图片</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell">
-				<view class="weui-cell__bd">
-					<view class="weui-uploader">
-						<view class="weui-uploader__hd">
-							<view class="weui-uploader__title">图片上传</view>
-							<view class="weui-uploader__info">{{files.length}}/2</view>
-						</view>
-						<view class="weui-uploader__bd">
-							<view class="weui-uploader__files" id="uploaderFiles">
-								<block wx:for-items="{{files}}" wx:key="{{index}}">
-									<view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
-										<image class="weui-uploader__img" src="{{item}}" mode="aspectFill"/>
-									</view>
-								</block>
-								<view class="weui-uploader__file">
-									<image class="weui-uploader__img" src="../images/pic_160.png" mode="aspectFill"/>
-								</view>
-							</view>
-							<view class="weui-uploader__input-box">
-								<view class="weui-uploader__input" bindtap="chooseImage"></view>
-							</view>
-						</view>
-					</view>
-				</view>
+	<view class="weui-cells__title">生理指标</view>
+	<view class="weui-flex">
+		<view class="label">BMI指数</view>
+		<view class="weui-flex__item">
+			<slider bindchange="bindSliderChangeBMI" min="12" max="42" show-value value="{{info.bmi}}"/>
+			<input name="bmi" value="{{info.bmi}}" style="display:none"/>
+		</view>
+	</view>
+
+	<view class="weui-flex">
+		<view class="label">体温(℃)</view>
+		<picker bindchange="bindPickerChangeTemperature" value="{{index}}" range="{{temperatures}}">
+			<view class="picker">
+				{{info.temperature}}
 			</view>
-		</view> -->
-		<view class="weui-cells__title">生理指标</view>
-		<view class="weui-flex">
-			<view class="label">BMI指数</view>
-			<view class="weui-flex__item">
-				<slider bindchange="bindSliderChangeBMI" min="12" max="42" show-value value="{{info.bmi}}"/>
-				<input name="bmi" value="{{info.bmi}}" style="display:none"/>
-			</view>
-		</view>
+			<input class="weui-input" type="number" value="{{info.temperature}}" name="temperature" style="display:none"/>				
+		</picker>
+	</view>
 
-		<view class="weui-flex">
-			<view class="label">体温(℃)</view>
-			<picker bindchange="bindPickerChangeTemperature" value="{{index}}" range="{{temperatures}}">
-				<view class="picker">
-					{{info.temperature}}
-				</view>
-				<input class="weui-input" type="number" value="{{info.temperature}}" name="temperature" style="display:none"/>				
-			</picker>
+	<view class="weui-flex">
+		<view class="label">脉搏(次／分钟)</view>
+		<view class="weui-flex__item">
+			<slider bindchange='bindSliderChangePulse' min="35" max="120" show-value value="{{info.pulse}}"/>
+			<input name="pulse" value="{{info.pulse}}" style="display:none"/>
 		</view>
+	</view>
 
-		<view class="weui-flex">
-			<view class="label">脉搏(次／分钟)</view>
-			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangePulse' min="35" max="120" show-value value="{{info.pulse}}"/>
-				<input name="pulse" value="{{info.pulse}}" style="display:none"/>
-			</view>
+	<view class="weui-flex">
+		<view class="label">呼吸(次／分钟)</view>
+		<view class="weui-flex__item">
+			<slider bindchange='bindSliderChangeRespiratoryRate' min="5" max="50" show-value value="{{info.respiratory_rate}}"/>
+			<input name="respiratory_rate" value="{{info.respiratory_rate}}" style="display:none"/>
 		</view>
+	</view>
 
-		<view class="weui-flex">
-			<view class="label">呼吸(次／分钟)</view>
-			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeRespiratoryRate' min="5" max="50" show-value value="{{info.respiratory_rate}}"/>
-				<input name="respiratory_rate" value="{{info.respiratory_rate}}" style="display:none"/>
-			</view>
+	<view class="weui-flex">
+		<view class="label">收缩压(mmHg)</view>
+		<view class="weui-flex__item">
+			<slider bindchange='bindSliderChangeSystolicPressure' min="80" max="250" show-value value="{{info.systolic_pressure}}"/>
+			<input name="systolic_pressure" value="{{info.systolic_pressure}}" style="display:none"/>
 		</view>
+	</view>
 
-		<view class="weui-flex">
-			<view class="label">收缩压(mmHg)</view>
-			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeSystolicPressure' min="80" max="250" show-value value="{{info.systolic_pressure}}"/>
-				<input name="systolic_pressure" value="{{info.systolic_pressure}}" style="display:none"/>
-			</view>
+	<view class="weui-flex">
+		<view class="label">舒张压(mmHg)</view>
+		<view class="weui-flex__item">
+			<slider bindchange='bindSliderChangeDiastolicPressure' min="60" max="120" show-value value="{{info.diastolic_pressure}}"/>
+			<input name="diastolic_pressure" value="{{info.diastolic_pressure}}" style="display:none"/>
 		</view>
+	</view>
 
-		<view class="weui-flex">
-			<view class="label">舒张压(mmHg)</view>
-			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeDiastolicPressure' min="60" max="120" show-value value="{{info.diastolic_pressure}}"/>
-				<input name="diastolic_pressure" value="{{info.diastolic_pressure}}" style="display:none"/>
-			</view>
+	<view class="weui-flex">
+		<view class="label">氧饱和度(%)</view>
+		<view class="weui-flex__item">
+			<slider bindchange='bindSliderChangeOxygenSaturation' min="75" max="100" show-value value="{{info.oxygen_saturation}}"/>
+			<input name="oxygen_saturation" value="{{info.oxygen_saturation}}" style="display:none"/>
 		</view>
+	</view>
 
-		<view class="weui-flex">
-			<view class="label">氧饱和度(%)</view>
-			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangeOxygenSaturation' min="75" max="100" show-value value="{{info.oxygen_saturation}}"/>
-				<input name="oxygen_saturation" value="{{info.oxygen_saturation}}" style="display:none"/>
-			</view>
+	<view class="weui-flex">
+		<view class="label">疼痛指数</view>
+		<view class="weui-flex__item">
+			<slider bindchange='bindSliderChangePainScore' min="1" max="10" show-value value="{{info.pain_score}}"/>
+			<input name="pain_score" value="{{info.pain_score}}" style="display:none"/>
 		</view>
+	</view>
 
-		<view class="weui-flex">
-			<view class="label">疼痛指数</view>
-			<view class="weui-flex__item">
-				<slider bindchange='bindSliderChangePainScore' min="1" max="10" show-value value="{{info.pain_score}}"/>
-				<input name="pain_score" value="{{info.pain_score}}" style="display:none"/>
-			</view>
+	<view class="weui-cells__title">上传图片</view>
+	<view class="weui-cells">
+		<view class="weui-cell">
+			<ul class="weui-uploader__files">
+				<li class="weui-uploader__file" wx:for="{{imgArr2}}" wx:key="{{index}}">
+					<image
+						class="uploader-image"
+						src="{{item.data}}"
+						mode="aspectFit"
+						bindtap="previewImg2"
+						data-imgUrl="{{item.data}}"
+					></image>
+				</li>
+				<li class="weui-uploader__input-box" bindtap="doUpload2"></li>
+			</ul>
 		</view>
-
-		<view class="weui-cells__title">上传图片</view>
-		<view class="weui-cells">
-			<view class="weui-cell">
-				<ul class="weui-uploader__files">
-					<li class="weui-uploader__file" wx:for="{{imgArr2}}" wx:key="{{index}}">
-						<image
-							class="uploader-image"
-							src="{{item.data}}"
-							mode="aspectFit"
-							bindtap="previewImg2"
-							data-imgUrl="{{item.data}}"
-						></image>
-					</li>
-					<li class="weui-uploader__input-box" bindtap="doUpload2"></li>
-				</ul>
-			</view>
-		</view>
-
-		<view class="weui-btn-area">
-			<button formType="submit" class="weui-btn" type="Primary">确定</button>
-		</view>
-	</scroll-view>
+	</view>
 </template>

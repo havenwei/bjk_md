@@ -1,131 +1,127 @@
 <template name="tab1">
-	<scroll-view>
-		<view class="weui-flex">
-			<view class="label">姓名</view>
-			<view class="weui-flex__item__show">
-				<input class="weui-input" name="name" placeholder="请输入姓名"/>
+	<view class="weui-flex">
+		<view class="label">姓名</view>
+		<view class="weui-flex__item__show">
+			<input class="weui-input" name="name" value="{{info.name}}" placeholder="请输入姓名"/>
+		</view>
+	</view>
+
+	<view class="weui-flex">
+		<view class="label">身份证</view>
+		<view class="weui-flex__item__show">
+			<input class="weui-input" name="identity_card" value="{{info.identity_card}}" bindblur="validateIdentityCard" placeholder="请输入身份证"/>
+		</view>
+	</view>
+
+	<view class="weui-flex">
+		<view class="label">性别</view>
+		<view class="weui-flex__item__show">
+			<radio-group name="gender" bindchange="radioChange">
+				<label><radio value="1" checked="{{info.gender == 1}}"/>男</label>
+				<label><radio value="0" checked="{{info.gender == 0}}"/>女</label>
+			</radio-group>
+			<input class="weui-input" type="number" value="{{info.gender}}" name="gender" style="display:none"/>				
+		</view>
+	</view>
+
+	<view class="weui-flex">
+		<view class="label">身高(cm)</view>
+		<picker bindchange="bindPickerChangeHeight" value="{{index}}" range="{{heights}}">
+			<view class="picker">
+			{{info.height}}
+			</view>
+			<input class="weui-input" type="number" value="{{info.height}}" name="height" style="display:none"/>				
+		</picker>
+	</view>
+
+	<view class="weui-flex">
+		<view class="label">体重(kg)</view>
+		<picker bindchange="bindPickerChangeWeight" value="{{index}}" range="{{weights}}">
+			<view class="picker">
+			{{info.weight}}
+			</view>
+			<input class="weui-input" type="number" value="{{info.weight}}" name="weight" style="display:none"/>				
+		</picker>
+	</view>
+
+	<view class="weui-cells__title">主诉</view>
+	<view class="weui-cells weui-cells_after-title">
+		<view class="weui-cell">
+			<view class="weui-cell__bd">
+				<textarea name="chief_complaint" class="weui-textarea" value="{{info.chief_complaint}}" auto-height="true" form="medicalRecordForm"/>
 			</view>
 		</view>
+	</view>
 
-		<view class="weui-flex">
-			<view class="label">身份证</view>
-			<view class="weui-flex__item__show">
-				<input class="weui-input" name="identity_card" value="{{info.identity_card}}" bindblur="validateIdentityCard" placeholder="请输入身份证"/>
+	<view class="weui-cells__title">现病史</view>
+	<view class="weui-cells weui-cells_after-title">
+		<view class="weui-cell">
+			<view class="weui-cell__bd">
+				<textarea name="history_of_present_illness" class="weui-textarea" value="{{info.history_of_present_illness}}" auto-height="true" form="medicalRecordForm"/>
 			</view>
 		</view>
+	</view>
 
-		<view class="weui-flex">
-			<view class="label">性别</view>
-			<view class="weui-flex__item__show">
-				<radio-group name="gender">
-					<label><radio value="男" />男</label>
-					<label><radio value="女" />女</label>
-				</radio-group>
+	<view class="weui-cells__title">既往史</view>
+	<view class="weui-cells weui-cells_after-title">
+		<view class="weui-cell">
+			<view class="weui-cell__bd">
+				<textarea name="past_medical_history" class="weui-textarea" value="{{info.past_medical_history}}" auto-height="true" form="medicalRecordForm"/>
 			</view>
 		</view>
+	</view>
 
-		<view class="weui-flex">
-			<view class="label">身高(cm)</view>
-			<picker bindchange="bindPickerChangeHeight" value="{{index}}" range="{{heights}}">
-				<view class="picker">
-				{{info.height}}
-				</view>
-				<input class="weui-input" type="number" value="{{info.height}}" name="height" style="display:none"/>				
-			</picker>
+	<view class="weui-cells__title">过敏史</view>
+	<view class="weui-cells weui-cells_after-title">
+		<view class="weui-cell">
+			<view class="weui-cell__bd">
+				<textarea name="allergic_history" class="weui-textarea" value="{{info.allergic_history}}" auto-height="true" form="medicalRecordForm"/>
+			</view>
 		</view>
+	</view>
 
-		<view class="weui-flex">
-			<view class="label">体重(kg)</view>
-			<picker bindchange="bindPickerChangeWeight" value="{{index}}" range="{{weights}}">
-				<view class="picker">
-				{{info.weight}}
-				</view>
-				<input class="weui-input" type="number" value="{{info.weight}}" name="weight" style="display:none"/>				
-			</picker>
+	<view class="weui-cells__title">个人史</view>
+	<view class="weui-cells weui-cells_after-title">
+		<view class="weui-cell">
+			<view class="weui-cell__bd">
+				<textarea name="personal_history" class="weui-textarea" value="{{info.personal_history}}" auto-height="true" form="medicalRecordForm"/>
+			</view>
 		</view>
-	
-		<view class="weui-cells__title">主诉</view>
-		<view class="weui-cells weui-cells_after-title">
+	</view>
+
+	<view class="weui-cells__title">家族史</view>
+	<view class="weui-cells weui-cells_after-title">
+		<view class="weui-cell">
+			<view class="weui-cell__bd">
+				<textarea name="family_history" class="weui-textarea" value="{{info.family_history}}" auto-height="true" form="medicalRecordForm"/>
+			</view>
+		</view>
+	</view>
+
+	<view class="weui-cells__title">疫苗史</view>
+	<view class="weui-cells weui-cells_after-title">
+		<view class="weui-cell">
+			<view class="weui-cell__bd">
+				<textarea name="vaccination_history" class="weui-textarea" value="{{info.vaccination_history}}" auto-height="true" form="medicalRecordForm"/>
+			</view>
+		</view>
+	</view>
+
+	<view class="weui-cells__title">上传图片</view>
+	<view class="weui-cells">
 			<view class="weui-cell">
-				<view class="weui-cell__bd">
-					<textarea name="chief_complaint" class="weui-textarea" placeholder="" style="height: 3.3em"/>
-				</view>
+				<ul class="weui-uploader__files">
+					<li class="weui-uploader__file" wx:for="{{imgArr1}}" wx:key="{{index}}">
+						<image
+							class="uploader-image"
+							src="{{item.data}}"
+							mode="aspectFit"
+							bindtap="previewImg1"
+							data-imgUrl="{{item.data}}"></image>
+					</li>
+					<li class="weui-uploader__input-box" bindtap="doUpload1"></li>
+				</ul>
 			</view>
 		</view>
 
-		<view class="weui-cells__title">现病史</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell">
-				<view class="weui-cell__bd">
-					<textarea name="history_of_present_illness" class="weui-textarea" placeholder="" style="height: 3.3em"/>
-				</view>
-			</view>
-		</view>
-
-		<view class="weui-cells__title">既往史</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell">
-				<view class="weui-cell__bd">
-					<textarea name="past_medical_history" class="weui-textarea" placeholder="" style="height: 3.3em"/>
-				</view>
-			</view>
-		</view>
-
-		<view class="weui-cells__title">过敏史</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell">
-				<view class="weui-cell__bd">
-					<textarea name="allergic_history" class="weui-textarea" placeholder="" style="height: 3.3em"/>
-				</view>
-			</view>
-		</view>
-
-		<view class="weui-cells__title">个人史</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell">
-				<view class="weui-cell__bd">
-					<textarea name="personal_history" class="weui-textarea" placeholder="" style="height: 3.3em"/>
-				</view>
-			</view>
-		</view>
-
-		<view class="weui-cells__title">家族史</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell">
-				<view class="weui-cell__bd">
-					<textarea name="family_history" class="weui-textarea" placeholder="" style="height: 3.3em"/>
-				</view>
-			</view>
-		</view>
-
-		<view class="weui-cells__title">疫苗史</view>
-		<view class="weui-cells weui-cells_after-title">
-			<view class="weui-cell">
-				<view class="weui-cell__bd">
-					<textarea name="vaccination_history" class="weui-textarea" placeholder="" style="height: 3.3em"/>
-				</view>
-			</view>
-		</view>
-
-		<view class="weui-cells__title">上传图片</view>
-		<view class="weui-cells">
-                <view class="weui-cell">
-					<ul class="weui-uploader__files">
-						<li class="weui-uploader__file" wx:for="{{imgArr1}}" wx:key="{{index}}">
-							<image
-								class="uploader-image"
-								src="{{item.data}}"
-								mode="aspectFit"
-								bindtap="previewImg1"
-								data-imgUrl="{{item.data}}"></image>
-						</li>
-						<li class="weui-uploader__input-box" bindtap="doUpload1"></li>
-					</ul>
-                </view>
-            </view>
-
-		<view class="weui-btn-area">
-			<button formType="submit" class="weui-btn" type="Primary">确定</button>
-		</view>
-	</scroll-view>
 </template>
