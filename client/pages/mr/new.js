@@ -187,10 +187,9 @@ Page({
   },
 
   formSubmit: function(e) {
-    var formData = e.detail.value;
-    console.log(formData);
-
-    console.log(this.data.info);
+    var formData = e.detail.value
+    console.log("表单要提交的内容: ")
+    console.log(formData)
     return false
 
     console.log(wx.getStorageSync("userInfo"))

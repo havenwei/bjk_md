@@ -12,7 +12,7 @@
 	},
 	"appid": "wx218800b558d61f52",
 	"projectname": "MedicalRecord",
-	"libVersion": "1.9.8",
+	"libVersion": "1.9.94",
 	"condition": {
 		"search": {
 			"current": -1,
